@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MySQL,Java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="服务器基础配置在虚拟机或云服务器端安装Ubuntu 16.04.x LTS版本，一定要是LTS（长期支持）版本，主要是为了稳定。 1. 修改root账户密码12sudo passwd# 然后输入两遍你要新建的root账户密码即可 2. 修改Ubuntu国内源主要是为了下载软件的速度，国内很多公司和高校都做了很多开源软件的镜像。如果是使用云服务器，基本不需更换软件源，因为云服务器提供商都会把镜像的源">
+<meta name="keywords" content="MySQL,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建Java&amp;MySQL开发环境">
+<meta property="og:url" content="https://www.hoxz.me/2017/10/20/java-mysql-environment/index.html">
+<meta property="og:site_name" content="Hoxz的博客">
+<meta property="og:description" content="服务器基础配置在虚拟机或云服务器端安装Ubuntu 16.04.x LTS版本，一定要是LTS（长期支持）版本，主要是为了稳定。 1. 修改root账户密码12sudo passwd# 然后输入两遍你要新建的root账户密码即可 2. 修改Ubuntu国内源主要是为了下载软件的速度，国内很多公司和高校都做了很多开源软件的镜像。如果是使用云服务器，基本不需更换软件源，因为云服务器提供商都会把镜像的源">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-20T15:36:20.792Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搭建Java&amp;MySQL开发环境">
+<meta name="twitter:description" content="服务器基础配置在虚拟机或云服务器端安装Ubuntu 16.04.x LTS版本，一定要是LTS（长期支持）版本，主要是为了稳定。 1. 修改root账户密码12sudo passwd# 然后输入两遍你要新建的root账户密码即可 2. 修改Ubuntu国内源主要是为了下载软件的速度，国内很多公司和高校都做了很多开源软件的镜像。如果是使用云服务器，基本不需更换软件源，因为云服务器提供商都会把镜像的源">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.hoxz.me/2017/10/20/java-mysql-environment/"/>
+
+
+
+
+
+  <title>搭建Java&MySQL开发环境 | Hoxz的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hoxz的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hoxz.me/2017/10/20/java-mysql-environment/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hoxz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hoxz的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">搭建Java&MySQL开发环境</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T23:13:38+08:00">
+                2017-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="服务器基础配置"><a href="#服务器基础配置" class="headerlink" title="服务器基础配置"></a>服务器基础配置</h3><p>在虚拟机或云服务器端安装<code>Ubuntu 16.04.x LTS</code>版本，一定要是LTS（长期支持）版本，主要是为了稳定。</p>
+<h5 id="1-修改root账户密码"><a href="#1-修改root账户密码" class="headerlink" title="1. 修改root账户密码"></a>1. 修改root账户密码</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo passwd</div><div class="line"><span class="comment"># 然后输入两遍你要新建的root账户密码即可</span></div></pre></td></tr></table></figure>
+<h5 id="2-修改Ubuntu国内源"><a href="#2-修改Ubuntu国内源" class="headerlink" title="2. 修改Ubuntu国内源"></a>2. 修改Ubuntu国内源</h5><p>主要是为了下载软件的速度，国内很多公司和高校都做了很多开源软件的镜像。如果是使用云服务器，基本不需更换软件源，因为云服务器提供商都会把镜像的源修改为自己内网源，速度快而且不占用带宽。</p>
+<a id="more"></a> 
+<p>我使用搜狐的Ubuntu源（20171019. 实测清华大学源不能用）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 1. 备份软件源</span></div><div class="line">sudo cp /etc/apt/source.list /etc/apt/source.list.bak</div><div class="line"><span class="comment"># 2. 在根目录下新建软件源文件</span></div><div class="line"><span class="comment">#   (之所以不直接在原有文件上修改是因为考虑到有些童鞋比如说我对vim使用不熟练，删除原有内容起来比较麻烦)</span></div><div class="line">sudo vim ~/source.list</div><div class="line"><span class="comment"># 3. 添加搜狐源(复制下面的内容直接粘贴)</span></div><div class="line">deb http://mirrors.sohu.com/ubuntu/ trusty main restricted universe multiverse  </div><div class="line">deb http://mirrors.sohu.com/ubuntu/ trusty-security main restricted universe multiverse  </div><div class="line">deb http://mirrors.sohu.com/ubuntu/ trusty-updates main restricted universe multiverse  </div><div class="line">deb http://mirrors.sohu.com/ubuntu/ trusty-proposed main restricted universe multiverse  </div><div class="line">deb http://mirrors.sohu.com/ubuntu/ trusty-backports main restricted universe multiverse  </div><div class="line">deb-src http://mirrors.sohu.com/ubuntu/ trusty main restricted universe multiverse  </div><div class="line">deb-src http://mirrors.sohu.com/ubuntu/ trusty-security main restricted universe multiverse  </div><div class="line">deb-src http://mirrors.sohu.com/ubuntu/ trusty-updates main restricted universe multiverse  </div><div class="line">deb-src http://mirrors.sohu.com/ubuntu/ trusty-proposed main restricted universe multiverse  </div><div class="line">deb-src http://mirrors.sohu.com/ubuntu/ trusty-backports main restricted universe multiverse</div><div class="line"><span class="comment"># 4. 拷贝覆盖原来的源文件</span></div><div class="line">sudo cp ~/source.list /etc/apt/</div><div class="line"><span class="comment"># 5. 更新</span></div><div class="line">sudo apt-get update</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h3><p>所需安装包：jdk-8u102-linux-x64.tar.gz</p>
+<h5 id="1-安装java"><a href="#1-安装java" class="headerlink" title="1. 安装java"></a>1. 安装java</h5><p>我们统一将用到的程序安装到<code>/usr/local/</code>下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 1. 拷贝文件到/usr/local下</span></div><div class="line">sudo cp jdk-8u102-linux-x64.tar.gz /usr/<span class="built_in">local</span>/</div><div class="line"><span class="comment"># 2. 解压</span></div><div class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/</div><div class="line">sudo tar -zxvf jdk-8u102-linux-x64.tar.gz</div></pre></td></tr></table></figure>
+<h5 id="2-配置环境变量"><a href="#2-配置环境变量" class="headerlink" title="2. 配置环境变量"></a>2. 配置环境变量</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 1. 编辑/etc/profile</span></div><div class="line">sudo vi /etc/profile</div><div class="line"><span class="comment"># 2. 将以下内容添加到文件末尾</span></div><div class="line"><span class="built_in">export</span> JAVA_HOME=/usr/<span class="built_in">local</span>/jdk1.8.0_102</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JAVA_HOME</span>/jre/bin:<span class="variable">$PATH</span></div><div class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib:<span class="variable">$JAVA_HOME</span>/jre/lib</div><div class="line"><span class="comment"># 3. 执行命令</span></div><div class="line"><span class="built_in">source</span> /etc/profile</div><div class="line"><span class="comment"># 4. 验证</span></div><div class="line">javac -version</div><div class="line">java -version</div></pre></td></tr></table></figure>
+<h5 id="3-编写HelloWorld测试类"><a href="#3-编写HelloWorld测试类" class="headerlink" title="3. 编写HelloWorld测试类"></a>3. 编写HelloWorld测试类</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 1. 创建HelloWorld类，注意文件名要与文件里的公开类同名</span></div><div class="line">vi HelloWorld.java</div><div class="line"><span class="comment"># 2. 编写HelloWorld类</span></div><div class="line">​```JAVA</div><div class="line">public class HelloWorld&#123;</div><div class="line">     public static void main(String args[])&#123;</div><div class="line">          HelloWorld hello=new HelloWorld();</div><div class="line">          hello.printHello();</div><div class="line">     &#125;</div><div class="line">     private void <span class="function"><span class="title">printHello</span></span>()&#123;</div><div class="line">          System.out.println(<span class="string">"hello!!!"</span>);</div><div class="line">     &#125;</div><div class="line">&#125;</div><div class="line">​</div></pre></td></tr></table></figure>
+<h1 id="3-编译"><a href="#3-编译" class="headerlink" title="3. 编译"></a>3. 编译</h1><p>javac HelloWorld.java</p>
+<h1 id="若无法编译，则先运行一次-export-PATH-PATH-usr-local-jdk1-8-0-102"><a href="#若无法编译，则先运行一次-export-PATH-PATH-usr-local-jdk1-8-0-102" class="headerlink" title="若无法编译，则先运行一次 export PATH=$PATH:/usr/local/jdk1.8.0_102"></a>若无法编译，则先运行一次 export PATH=$PATH:/usr/local/jdk1.8.0_102</h1><h1 id="4-运行"><a href="#4-运行" class="headerlink" title="4. 运行"></a>4. 运行</h1><p>java HelloWorld<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 安装Tomcat</div><div class="line"></div><div class="line">所需安装包：apache-tomcat-7.0.82.tar.gz</div><div class="line"></div><div class="line">##### 1. 解压文件</div><div class="line"></div><div class="line">```bash</div><div class="line">sudo cp apache-tomcat-7.0.82.tar.gz /usr/local/</div><div class="line">cd /usr/local/</div><div class="line">sudo tar -zxvf apache-tomcat-7.0.82.tar.gz</div></pre></td></tr></table></figure></p>
+<h5 id="2-修改启动脚本，以配置java环境"><a href="#2-修改启动脚本，以配置java环境" class="headerlink" title="2. 修改启动脚本，以配置java环境"></a>2. 修改启动脚本，以配置java环境</h5><p>分别修改<code>apache-tomcat-7.0.82/bin/</code>目录下的<code>startup.sh</code>和<code>shutdown.sh</code>，这两个是Tomcat的启动和停止脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 修改startup.sh</span></div><div class="line"><span class="built_in">cd</span> apache-tomcat-7.0.82</div><div class="line">sudo vi bin/startup.sh</div><div class="line"><span class="comment"># 在最后一行之前添加以下代码</span></div><div class="line">JAVA_HOME=/usr/<span class="built_in">local</span>/jdk1.8.0_102</div><div class="line">JRE_HOME=<span class="variable">$&#123;JAVA_HOME&#125;</span>/jre</div><div class="line">PATH=<span class="variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="variable">$PATH</span></div><div class="line">CLASSPATH=.:<span class="variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="variable">$&#123;JRE_HOME&#125;</span>/lib</div><div class="line">CATALINA_HOME=/usr/<span class="built_in">local</span>/apache-tomcat-7.0.82</div><div class="line"><span class="comment"># 修改shutdow.sh</span></div><div class="line">sudo vi bin/修改shutdow.sh</div><div class="line"><span class="comment"># 修改的内容和方法同上</span></div></pre></td></tr></table></figure>
+<h5 id="3-启动Tomcat"><a href="#3-启动Tomcat" class="headerlink" title="3. 启动Tomcat"></a>3. 启动Tomcat</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /usr/<span class="built_in">local</span>/apache-tomcat-7.0.82/bin/startup.sh</div></pre></td></tr></table></figure>
+<p>在浏览器地址栏输入<code>http://localhost:8080</code>，若出现Tomcat页面则表示安装成功。</p>
+<h5 id="4-停止Tomcat"><a href="#4-停止Tomcat" class="headerlink" title="4. 停止Tomcat"></a>4. 停止Tomcat</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /usr/<span class="built_in">local</span>/apache-tomcat-7.0.82/bin/shutdown.sh</div></pre></td></tr></table></figure>
+<h3 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h3><p>本文安装版本：5.7.19</p>
+<h5 id="1-使用apt-get安装"><a href="#1-使用apt-get安装" class="headerlink" title="1. 使用apt-get安装"></a>1. 使用apt-get安装</h5><p>强烈建议直接使用<code>apt-get</code>安装MySQL。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install mysql-server mysql-client libmysqlclient-dev</div></pre></td></tr></table></figure>
+<p>安装过程中会提示你创建密码，一定要仔细认真。</p>
+<p>安装完成后，使用如下命令确认创建成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo netstat -tap | grep mysql</div><div class="line"><span class="comment"># 若看到有mysql 的socket处于 listen 状态则表示安装成功。</span></div></pre></td></tr></table></figure>
+<h5 id="2-登陆数据库"><a href="#2-登陆数据库" class="headerlink" title="2. 登陆数据库"></a>2. 登陆数据库</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql -u root -p </div><div class="line"><span class="comment"># 会提示你输入密码，也就是刚才安装过程中创建的密码</span></div></pre></td></tr></table></figure>
+<p>进入MySQL命令行后，使用SQL语句操作即可。</p>
+<h5 id="3-启动和停止MySQL服务"><a href="#3-启动和停止MySQL服务" class="headerlink" title="3. 启动和停止MySQL服务"></a>3. 启动和停止MySQL服务</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">service mysql stop</div><div class="line">service mysql start</div><div class="line">service mysql restart</div></pre></td></tr></table></figure>
+<h3 id="安装JDBC"><a href="#安装JDBC" class="headerlink" title="安装JDBC"></a>安装JDBC</h3><p>所需安装包：mysql-connector-java-5.0.8.tar.gz</p>
+<h5 id="1-解压文件"><a href="#1-解压文件" class="headerlink" title="1. 解压文件"></a>1. 解压文件</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf mysql-connector-java-5.0.8.tar.gz</div></pre></td></tr></table></figure>
+<h5 id="2-拷贝到Java库中"><a href="#2-拷贝到Java库中" class="headerlink" title="2. 拷贝到Java库中"></a>2. 拷贝到Java库中</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo cp mysql-connector-java-5.0.8.tar.gz <span class="variable">$&#123;JAVA_HOME&#125;</span>/lib</div><div class="line">sudo cp mysql-connector-java-5.0.8.tar.gz <span class="variable">$&#123;JAVA_HOME&#125;</span>/jre/lib/ext</div></pre></td></tr></table></figure>
+<h5 id="3-测试JDBC"><a href="#3-测试JDBC" class="headerlink" title="3. 测试JDBC"></a>3. 测试JDBC</h5><p>首先在MySQL命令行中使用SQL语句创建一个新的数据库<code>myDataBase</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CREATE DATABASE myDataBase</div></pre></td></tr></table></figure>
+<p>然后，编写一个类，测试java与MySQL是否通过jdbc正确连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 创建Mysqljava.java</span></div><div class="line">vi Mysqljava.java</div></pre></td></tr></table></figure>
+<p>将以下内容粘贴进去</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.sql.* ;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mysqljava</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] arg)</span></span>&#123;</div><div class="line">        <span class="keyword">try</span>&#123;</div><div class="line">            Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>) ;</div><div class="line">            String url =<span class="string">"jdbc:mysql://127.0.0.1/world?characterEncoding=utf8"</span> ;</div><div class="line">            Connection conn = DriverManager.getConnection(url,<span class="string">"root"</span>,<span class="string">""</span>) ;</div><div class="line">            System.out.println(<span class="string">"success..."</span>) ;</div><div class="line">        &#125;<span class="keyword">catch</span>(Exception e)&#123;</div><div class="line">            System.out.println(<span class="string">"failure!!!"</span>) ;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>编译运行，若一切正常的话，就会输出success…</p>
+<p>如果有问题，首先排查MySQL服务是否已启动。</p>
+<h5 id="4-升级版测试程序"><a href="#4-升级版测试程序" class="headerlink" title="4. 升级版测试程序"></a>4. 升级版测试程序</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.sql.* ;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mysqljava</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] arg)</span></span>&#123;</div><div class="line">        <span class="keyword">try</span>&#123;</div><div class="line">            Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>) ;</div><div class="line">            String url =<span class="string">"jdbc:mysql://127.0.0.1/myDataBase?characterEncoding=utf8"</span> ;</div><div class="line">            Connection conn = DriverManager.getConnection(url,<span class="string">"root"</span>,<span class="string">"123456"</span>) ;</div><div class="line">            System.out.println(<span class="string">"success..."</span>) ;</div><div class="line">      PreparedStatement pst=conn.prepareStatement(<span class="string">"select * from user"</span>);</div><div class="line">      ResultSet rs=pst.executeQuery();</div><div class="line">      <span class="keyword">int</span> i=<span class="number">0</span>;  </div><div class="line">      <span class="keyword">while</span>(rs.next())&#123;</div><div class="line">                String item=<span class="keyword">new</span> String(rs.getString(<span class="number">1</span>).getBytes(<span class="string">"ISO-8859-1"</span>),<span class="string">"UTF-8"</span>);</div><div class="line">    i++;</div><div class="line">          System.out.println(i + <span class="string">":"</span> item + <span class="string">"\n"</span>) ;</div><div class="line">      &#125;</div><div class="line">      </div><div class="line">        &#125;<span class="keyword">catch</span>(Exception e)&#123;</div><div class="line">            System.out.println(<span class="string">"failure!!!"</span>) ;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参考链接：</p>
+<p><a href="http://blog.csdn.net/u011148119/article/details/50338355" target="_blank" rel="external">修改Ubuntu的aptget源为阿里源的方法</a></p>
+<p><a href="http://www.cnblogs.com/wenjieyatou/p/6114490.html" target="_blank" rel="external">ubuntu安装配置jdk tomcat mysql …</a></p>
+<p><a href="http://www.cnblogs.com/zhuyp1015/p/3561470.html" target="_blank" rel="external">Ubuntu 安装mysql和简单操作</a> </p>
+<p>另外一种安装MySQL的方法：<a href="http://www.cnblogs.com/flow-water/p/4649690.html" target="_blank" rel="external">阿里云ECS服务器配置（Ubuntu+JAVA+Tomcat+Mysql）</a> </p>
+<p><a href="http://blog.csdn.net/dst1213/article/details/52141126" target="_blank" rel="external">安装部署（二） Ubuntu 安装配置 MySQL Connector Java</a></p>
+<p><a href="http://blog.itpub.net/22480574/viewspace-1118032/" target="_blank" rel="external">Linux下java利用jdbc链接mysql数据库 </a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/20/mongolass-id/" rel="next" title="mongolass通过默认生成的_id进行操作">
+                <i class="fa fa-chevron-left"></i> mongolass通过默认生成的_id进行操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/20/mysql-encode/" rel="prev" title="MySQL编码问题">
+                MySQL编码问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Hoxz" />
+            
+              <p class="site-author-name" itemprop="name">Hoxz</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器基础配置"><span class="nav-number">1.</span> <span class="nav-text">服务器基础配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-修改root账户密码"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. 修改root账户密码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-修改Ubuntu国内源"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. 修改Ubuntu国内源</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装JDK"><span class="nav-number">2.</span> <span class="nav-text">安装JDK</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-安装java"><span class="nav-number">2.0.1.</span> <span class="nav-text">1. 安装java</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-配置环境变量"><span class="nav-number">2.0.2.</span> <span class="nav-text">2. 配置环境变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-编写HelloWorld测试类"><span class="nav-number">2.0.3.</span> <span class="nav-text">3. 编写HelloWorld测试类</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-编译"><span class="nav-number"></span> <span class="nav-text">3. 编译</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#若无法编译，则先运行一次-export-PATH-PATH-usr-local-jdk1-8-0-102"><span class="nav-number"></span> <span class="nav-text">若无法编译，则先运行一次 export PATH=$PATH:/usr/local/jdk1.8.0_102</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-运行"><span class="nav-number"></span> <span class="nav-text">4. 运行</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-修改启动脚本，以配置java环境"><span class="nav-number">0.0.1.</span> <span class="nav-text">2. 修改启动脚本，以配置java环境</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-启动Tomcat"><span class="nav-number">0.0.2.</span> <span class="nav-text">3. 启动Tomcat</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-停止Tomcat"><span class="nav-number">0.0.3.</span> <span class="nav-text">4. 停止Tomcat</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装MySQL"><span class="nav-number">1.</span> <span class="nav-text">安装MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-使用apt-get安装"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. 使用apt-get安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-登陆数据库"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. 登陆数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-启动和停止MySQL服务"><span class="nav-number">1.0.3.</span> <span class="nav-text">3. 启动和停止MySQL服务</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装JDBC"><span class="nav-number">2.</span> <span class="nav-text">安装JDBC</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-解压文件"><span class="nav-number">2.0.1.</span> <span class="nav-text">1. 解压文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-拷贝到Java库中"><span class="nav-number">2.0.2.</span> <span class="nav-text">2. 拷贝到Java库中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-测试JDBC"><span class="nav-number">2.0.3.</span> <span class="nav-text">3. 测试JDBC</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-升级版测试程序"><span class="nav-number">2.0.4.</span> <span class="nav-text">4. 升级版测试程序</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hoxz</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
