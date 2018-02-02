@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Windows,Ndis,驱动程序," />
+  <meta name="keywords" content="Windows,NDIS,驱动程序," />
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="关键思路：为驱动创建一个设备对象 usbnwifi 例程中，MPInitialize函数通过NICRegisterDevice函数，注册了NICDispatch函数入口（该函数实现IRP的分发处理），从而为小端口驱动注册了一个IOCTL接口。这一过程根本上是调用了NDIS的NdisRegisterDeviceEx函数，传入了包含分发函数入口的_NDIS_DEVICE_OBJECT_ATTRIBU">
-<meta name="keywords" content="Windows,Ndis,驱动程序">
+<meta name="keywords" content="Windows,NDIS,驱动程序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NDIS小端口驱动实现IOCTL分发">
 <meta property="og:url" content="https://www.hoxz.me/2018/02/02/use-ioctl-in-ndis/index.html">
 <meta property="og:site_name" content="Hoxz的博客">
 <meta property="og:description" content="关键思路：为驱动创建一个设备对象 usbnwifi 例程中，MPInitialize函数通过NICRegisterDevice函数，注册了NICDispatch函数入口（该函数实现IRP的分发处理），从而为小端口驱动注册了一个IOCTL接口。这一过程根本上是调用了NDIS的NdisRegisterDeviceEx函数，传入了包含分发函数入口的_NDIS_DEVICE_OBJECT_ATTRIBU">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-02T14:21:07.141Z">
+<meta property="og:updated_time" content="2018-02-02T14:24:21.190Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NDIS小端口驱动实现IOCTL分发">
 <meta name="twitter:description" content="关键思路：为驱动创建一个设备对象 usbnwifi 例程中，MPInitialize函数通过NICRegisterDevice函数，注册了NICDispatch函数入口（该函数实现IRP的分发处理），从而为小端口驱动注册了一个IOCTL接口。这一过程根本上是调用了NDIS的NdisRegisterDeviceEx函数，传入了包含分发函数入口的_NDIS_DEVICE_OBJECT_ATTRIBU">
@@ -379,7 +379,7 @@
           
             <a href="/tags/Windows/" rel="tag"># Windows</a>
           
-            <a href="/tags/Ndis/" rel="tag"># Ndis</a>
+            <a href="/tags/NDIS/" rel="tag"># NDIS</a>
           
             <a href="/tags/驱动程序/" rel="tag"># 驱动程序</a>
           
