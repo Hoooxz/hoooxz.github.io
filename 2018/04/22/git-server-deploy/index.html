@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Hoxz的博客">
 <meta property="og:description" content="使用 Node.js 开发前/后端时，由于node_modules等目录文件多、体积大，采用 FileZilla 等 FTP 工具拷贝工程显然不是一个理想的选择。这种情况下，采用 Git 的方法既经济又合理。 使用 Git 部署代码到服务器的总体思路为，在服务器上建立一个Git Server，每次将代码从本地push到Git Server时，利用Git Hooks将代码同步到我们要部署到工作目录下">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-22T12:23:56.592Z">
+<meta property="og:updated_time" content="2018-04-22T12:27:44.345Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 Git 部署代码到服务器">
 <meta name="twitter:description" content="使用 Node.js 开发前/后端时，由于node_modules等目录文件多、体积大，采用 FileZilla 等 FTP 工具拷贝工程显然不是一个理想的选择。这种情况下，采用 Git 的方法既经济又合理。 使用 Git 部署代码到服务器的总体思路为，在服务器上建立一个Git Server，每次将代码从本地push到Git Server时，利用Git Hooks将代码同步到我们要部署到工作目录下">
@@ -342,6 +342,7 @@
 <blockquote>
 <p>如果遇到类似于 error: insufficient permission for adding an object to repository database .git/objects 的错误，是因为相应的目录没有提供权限，同样利用 sudo chmod 777 -R .git/objects 修改权限即可。</p>
 </blockquote>
+<hr>
 <p>参考链接：</p>
 <ol>
 <li><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="external">搭建 Git 服务器 - 廖雪峰</a></li>
@@ -481,7 +482,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

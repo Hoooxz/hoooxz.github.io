@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Node.js," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,13 @@
 
 
 
-<meta name="description" content="Express端解析post请求需要通过body-parser中间件，使用npm安装并引入该中间件，然后利用app.use使用： 1234// 接收post json，http头中Content-Type==application/jsonapp.use(bodyparser.json());// 接收由表单提交来的jsonapp.use(bodyparser.urlencoded(&amp;#123;e">
-<meta name="keywords" content="Node.js">
-<meta property="og:type" content="article">
-<meta property="og:title" content="利用httpie工具对nodejs express进行post测试">
-<meta property="og:url" content="https://www.hoxz.me/2017/10/20/httpie-nodejs-post/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hoxz的博客">
+<meta property="og:url" content="https://www.hoxz.me/page/2/index.html">
 <meta property="og:site_name" content="Hoxz的博客">
-<meta property="og:description" content="Express端解析post请求需要通过body-parser中间件，使用npm安装并引入该中间件，然后利用app.use使用： 1234// 接收post json，http头中Content-Type==application/jsonapp.use(bodyparser.json());// 接收由表单提交来的jsonapp.use(bodyparser.urlencoded(&amp;#123;e">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-20T15:36:10.646Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用httpie工具对nodejs express进行post测试">
-<meta name="twitter:description" content="Express端解析post请求需要通过body-parser中间件，使用npm安装并引入该中间件，然后利用app.use使用： 1234// 接收post json，http头中Content-Type==application/jsonapp.use(bodyparser.json());// 接收由表单提交来的jsonapp.use(bodyparser.urlencoded(&amp;#123;e">
+<meta name="twitter:title" content="Hoxz的博客">
 
 
 
@@ -120,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hoxz.me/2017/10/20/httpie-nodejs-post/"/>
+  <link rel="canonical" href="https://www.hoxz.me/page/2/"/>
 
 
 
 
 
-  <title>利用httpie工具对nodejs express进行post测试 | Hoxz的博客</title>
+  <title>Hoxz的博客</title>
   
 
 
@@ -145,7 +140,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -228,9 +224,129 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hoxz.me/2017/10/20/mongolass-id/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hoxz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hoxz的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/20/mongolass-id/" itemprop="url">mongolass通过默认生成的_id进行操作</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T23:12:06+08:00">
+                2017-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>mongolass采用了和mongoose类似的API，对主键进行操作时不能简单的使用_id字符串<br>而使用对其进行格式化，如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123; _id: Mongolass.Types.ObjectId(id) &#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
 
   
 
@@ -260,7 +376,9 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">利用httpie工具对nodejs express进行post测试</h2>
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/20/httpie-nodejs-post/" itemprop="url">利用httpie工具对nodejs express进行post测试</a></h2>
         
 
         <div class="post-meta">
@@ -286,16 +404,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/20/httpie-nodejs-post/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/10/20/httpie-nodejs-post/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -320,10 +428,17 @@
       
 
       
-        <h3 id="Express端"><a href="#Express端" class="headerlink" title="Express端"></a>Express端</h3><p>解析post请求需要通过body-parser中间件，使用npm安装并引入该中间件，然后利用app.use使用：</p>
+        
+          <h3 id="Express端"><a href="#Express端" class="headerlink" title="Express端"></a>Express端</h3><p>解析post请求需要通过body-parser中间件，使用npm安装并引入该中间件，然后利用app.use使用：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 接收post json，http头中Content-Type==application/json</span></div><div class="line">app.use(bodyparser.json());</div><div class="line"><span class="comment">// 接收由表单提交来的json</span></div><div class="line">app.use(bodyparser.urlencoded(&#123;<span class="attr">extended</span>: <span class="literal">true</span>&#125;));</div></pre></td></tr></table></figure>
-<a id="more"></a> 
-<h3 id="httpie命令行参数"><a href="#httpie命令行参数" class="headerlink" title="httpie命令行参数"></a>httpie命令行参数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 使用post json方式</span></div><div class="line">http www.acb.xyz name=<span class="string">'test'</span> age=18</div><div class="line"><span class="comment"># 模拟表单进行post提交</span></div><div class="line">http -form www.abc.xyz name=<span class="string">'test'</span></div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/20/httpie-nodejs-post/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
     
@@ -338,36 +453,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Node-js/" rel="tag"># Node.js</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/20/mongolass-id/" rel="prev" title="mongolass通过默认生成的_id进行操作">
-                mongolass通过默认生成的_id进行操作 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -377,11 +470,14 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -389,17 +485,6 @@
 
 
           
-
-  
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
-
-  
-
-
 
         </div>
         
@@ -420,17 +505,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -501,22 +577,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Express端"><span class="nav-number">1.</span> <span class="nav-text">Express端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#httpie命令行参数"><span class="nav-number">2.</span> <span class="nav-text">httpie命令行参数</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -657,10 +717,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
-
-
 
   
 
@@ -707,30 +763,6 @@
 
     
 
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname, 
-            owner: 'hoooxz',
-            repo: 'gitment-comments',
-            
-            lang: "zh-Hans" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: 'a94240d0759f873033ea0af64865847c458026bf',
-            
-                client_id: '128d82b267219b038ee7'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
     
 
 

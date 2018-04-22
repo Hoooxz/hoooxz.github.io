@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Node.js," />
+  <meta name="keywords" content="驱动程序,Windows,NDIS," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Express端解析post请求需要通过body-parser中间件，使用npm安装并引入该中间件，然后利用app.use使用： 1234// 接收post json，http头中Content-Type==application/jsonapp.use(bodyparser.json());// 接收由表单提交来的jsonapp.use(bodyparser.urlencoded(&amp;#123;e">
-<meta name="keywords" content="Node.js">
+<meta name="description" content="一、初始化 NDIS 定时器 任何NDIS驱动程序都可以有多个定时器，可以是一次性或周期性的。NDIS_TIMER_CHARACTERISTICS结构定义了定时器的若干属性，其中一项是NetTimerCallback函数入口。当定时器到期时，NDIS调用NetTimerCallback函数执行定时任务。  初始化定时器：调用NdisAllocateTimerObject函数，传入自己定义的NDIS">
+<meta name="keywords" content="驱动程序,Windows,NDIS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用httpie工具对nodejs express进行post测试">
-<meta property="og:url" content="https://www.hoxz.me/2017/10/20/httpie-nodejs-post/index.html">
+<meta property="og:title" content="NDIS定时器工作机制">
+<meta property="og:url" content="https://www.hoxz.me/2018/04/22/ndis-timer-implement/index.html">
 <meta property="og:site_name" content="Hoxz的博客">
-<meta property="og:description" content="Express端解析post请求需要通过body-parser中间件，使用npm安装并引入该中间件，然后利用app.use使用： 1234// 接收post json，http头中Content-Type==application/jsonapp.use(bodyparser.json());// 接收由表单提交来的jsonapp.use(bodyparser.urlencoded(&amp;#123;e">
+<meta property="og:description" content="一、初始化 NDIS 定时器 任何NDIS驱动程序都可以有多个定时器，可以是一次性或周期性的。NDIS_TIMER_CHARACTERISTICS结构定义了定时器的若干属性，其中一项是NetTimerCallback函数入口。当定时器到期时，NDIS调用NetTimerCallback函数执行定时任务。  初始化定时器：调用NdisAllocateTimerObject函数，传入自己定义的NDIS">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-20T15:36:10.646Z">
+<meta property="og:updated_time" content="2018-04-22T14:10:52.860Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用httpie工具对nodejs express进行post测试">
-<meta name="twitter:description" content="Express端解析post请求需要通过body-parser中间件，使用npm安装并引入该中间件，然后利用app.use使用： 1234// 接收post json，http头中Content-Type==application/jsonapp.use(bodyparser.json());// 接收由表单提交来的jsonapp.use(bodyparser.urlencoded(&amp;#123;e">
+<meta name="twitter:title" content="NDIS定时器工作机制">
+<meta name="twitter:description" content="一、初始化 NDIS 定时器 任何NDIS驱动程序都可以有多个定时器，可以是一次性或周期性的。NDIS_TIMER_CHARACTERISTICS结构定义了定时器的若干属性，其中一项是NetTimerCallback函数入口。当定时器到期时，NDIS调用NetTimerCallback函数执行定时任务。  初始化定时器：调用NdisAllocateTimerObject函数，传入自己定义的NDIS">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hoxz.me/2017/10/20/httpie-nodejs-post/"/>
+  <link rel="canonical" href="https://www.hoxz.me/2018/04/22/ndis-timer-implement/"/>
 
 
 
 
 
-  <title>利用httpie工具对nodejs express进行post测试 | Hoxz的博客</title>
+  <title>NDIS定时器工作机制 | Hoxz的博客</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hoxz.me/2017/10/20/httpie-nodejs-post/">
+    <link itemprop="mainEntityOfPage" href="https://www.hoxz.me/2018/04/22/ndis-timer-implement/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hoxz">
@@ -260,7 +260,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">利用httpie工具对nodejs express进行post测试</h2>
+          <h2 class="post-title" itemprop="name headline">NDIS定时器工作机制</h2>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T23:10:49+08:00">
-                2017-10-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T22:09:17+08:00">
+                2018-04-22
               </time>
             
 
@@ -291,8 +291,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/20/httpie-nodejs-post/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/10/20/httpie-nodejs-post/" itemprop="commentsCount"></span>
+                <a href="/2018/04/22/ndis-timer-implement/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/22/ndis-timer-implement/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,10 +320,69 @@
       
 
       
-        <h3 id="Express端"><a href="#Express端" class="headerlink" title="Express端"></a>Express端</h3><p>解析post请求需要通过body-parser中间件，使用npm安装并引入该中间件，然后利用app.use使用：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 接收post json，http头中Content-Type==application/json</span></div><div class="line">app.use(bodyparser.json());</div><div class="line"><span class="comment">// 接收由表单提交来的json</span></div><div class="line">app.use(bodyparser.urlencoded(&#123;<span class="attr">extended</span>: <span class="literal">true</span>&#125;));</div></pre></td></tr></table></figure>
-<a id="more"></a> 
-<h3 id="httpie命令行参数"><a href="#httpie命令行参数" class="headerlink" title="httpie命令行参数"></a>httpie命令行参数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 使用post json方式</span></div><div class="line">http www.acb.xyz name=<span class="string">'test'</span> age=18</div><div class="line"><span class="comment"># 模拟表单进行post提交</span></div><div class="line">http -form www.abc.xyz name=<span class="string">'test'</span></div></pre></td></tr></table></figure>
+        <p>一、初始化 NDIS 定时器</p>
+<p>任何NDIS驱动程序都可以有多个定时器，可以是一次性或周期性的。NDIS_TIMER_CHARACTERISTICS结构定义了定时器的若干属性，其中一项是NetTimerCallback函数入口。当定时器到期时，NDIS调用NetTimerCallback函数执行定时任务。</p>
+<ul>
+<li>初始化定时器：调用NdisAllocateTimerObject函数，传入自己定义的NDIS_TIMER_CHARACTERISTICS结构</li>
+<li>启动定时器：调用NdisSetTimerObject函数</li>
+<li>释放定时器：调用NdisFreeTimerObject函数</li>
+</ul>
+<p>其中，NdisAllocateTimerObject函数原型为：</p>
+<pre><code>NDIS_STATUS NdisAllocateTimerObject(
+  _In_  NDIS_HANDLE                 NdisHandle,
+  _In_  PNDIS_TIMER_CHARACTERISTICS TimerCharacteristics,
+  _Out_ PNDIS_HANDLE                pTimerObject
+);
+</code></pre><a id="more"></a> 
+<p>二、启动和清除定时器</p>
+<p>利用NdisSetTimerObject函数可令驱动程序在指定的时间间隔或定期之后触发定时任务函数，其函数原型为：</p>
+<pre><code>BOOLEAN NdisSetTimerObject(
+  _In_     NDIS_HANDLE   TimerObject,
+  _In_     LARGE_INTEGER DueTime,
+  _In_opt_ LONG          MillisecondsPeriod,
+  _In_opt_ PVOID         FunctionContext
+);
+</code></pre><p>DueTime参数指定计时器到期的绝对或相对时间。如果为负值，则到期时间是相对于当前系统时间；否则，到期时间是绝对的。到期时间以系统时间单位（100纳秒间隔）表示。绝对到期时间跟踪系统时间的任何变化；相对过期时间不受系统时间变化的影响。</p>
+<p>MillisecondsPeriod参数指定定时器的可选重复间隔（以毫秒为单位）。若大于或等于零，则定时器以该间隔周期性触发；若为零，则为非周期性定时器。（参考自 KeSetTimerEx 函数）</p>
+<p>给出一些KeSetTimerEx函数的示例：</p>
+<pre><code>LARGE_INTEGER duetime = {0};
+#define POLLING_INTERVAL 3000
+// KeSetTimer(&amp;my_timer,timeout,&amp;KiTimerExpireDpc); // 仅仅只能设置一次  
+// KeSetTimerEx(&amp;my_timer, timeout, period, &amp;KiTimerExpireDpc); // 这个可以循环设置  
+KeSetTimerEx(&amp;device_extension-&gt;my_timer, duetime, POLLING_INTERVAL, &amp;deviceEx-&gt;KiTimerDpc);  
+// KeSetTimerEx语句启动周期定时器。由于duetime参数是0，所以定时器立即进入信号态。然后每隔POLLING_INTERVAL=3秒触发一次。
+</code></pre><p>调用NdisCancelTimerObject函数可取消之前调用NdisSetTimerObject函数设置的定时器。如果在调用NdisCancelTimerObject之前定时已经到时，则NDIS可能仍会调用NetTimerCallback。</p>
+<p>关于NdisSetTimerObject函数的更多信息，请参考 KeSetTimerEx 函数的介绍。</p>
+<p>三、定时任务函数</p>
+<p>定时器触发时，NDIS调用NetTimerCallback函数，其函数原型为：</p>
+<pre><code>NDIS_TIMER_FUNCTION NdisTimerFunction;
+
+void NdisTimerFunction(
+  PVOID SystemSpecific1,
+  PVOID FunctionContext,
+  PVOID SystemSpecific2,
+  PVOID SystemSpecific3
+)
+{...}
+</code></pre><p>FunctionContext参数指向驱动上下文，FunctionContext的默认值在NDIS_TIMER_CHARACTERISTICS结构中指定。值得注意的是，驱动在调用NdisSetTimerObject函数时，仍可传入一个FunctionContext参数。如此时传入了非 NULL 值，则该值会传给NetTimerCallback函数；否则，将传入NDIS_TIMER_CHARACTERISTICS结构中指定的默认值。</p>
+<p>任何 NDIS 驱动程序都可以有多个NetTimerCallback函数，每个这样的NetTimerCallback函数都必须与不同的驱动程序初始化的定时器关联。</p>
+<p>如果NetTimerCallback函数与其他函数共享驱动资源，则应使用自旋锁来同步对这些资源的访问。</p>
+<p>四、Microsoft 文档链接</p>
+<ol>
+<li><p>数据结构：NDIS_TIMER_CHARACTERISTICS</p>
+</li>
+<li><p>调用函数：NdisAllocateTimerObject、NdisSetTimerObject、NdisCancelTimerObject、NdisFreeTimerObject</p>
+</li>
+<li><p>要实现的函数：NetTimerCallback</p>
+</li>
+</ol>
+<hr>
+<p>参考链接：</p>
+<ol>
+<li>关于内核定时器,DPC,线程的使用</li>
+<li>Github - Microsoft - NDIS Virtual Miniport Driver</li>
+</ol>
+
       
     </div>
     
@@ -340,7 +399,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+            <a href="/tags/驱动程序/" rel="tag"># 驱动程序</a>
+          
+            <a href="/tags/Windows/" rel="tag"># Windows</a>
+          
+            <a href="/tags/NDIS/" rel="tag"># NDIS</a>
           
         </div>
       
@@ -353,15 +416,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/04/22/ndis-miniport-driver-ioctl/" rel="next" title="NDIS小端口驱动实现IOCTL分发">
+                <i class="fa fa-chevron-left"></i> NDIS小端口驱动实现IOCTL分发
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/20/mongolass-id/" rel="prev" title="mongolass通过默认生成的_id进行操作">
-                mongolass通过默认生成的_id进行操作 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -420,17 +483,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -501,22 +555,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Express端"><span class="nav-number">1.</span> <span class="nav-text">Express端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#httpie命令行参数"><span class="nav-number">2.</span> <span class="nav-text">httpie命令行参数</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

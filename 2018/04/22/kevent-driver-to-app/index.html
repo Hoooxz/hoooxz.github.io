@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Node.js," />
+  <meta name="keywords" content="驱动程序,Windows," />
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="Express端解析post请求需要通过body-parser中间件，使用npm安装并引入该中间件，然后利用app.use使用： 1234// 接收post json，http头中Content-Type==application/jsonapp.use(bodyparser.json());// 接收由表单提交来的jsonapp.use(bodyparser.urlencoded(&amp;#123;e">
-<meta name="keywords" content="Node.js">
+<meta name="description" content="一、同步事件对数据结构 KEVENT 进行初始化、等待和设置，实现多个线程之间的同步。例如，希望主线程 A 在等待线程 B 完成某事后才能做某事，可在主线程 A 中配置KEVENT事件等待，在线程B中完成操作后，对正在等待的KEVENT事件进行设置即可。 实例如下： 123456789101112131415161718// 定义一个事件KEVENT event;// 事件初始化KeInitial">
+<meta name="keywords" content="驱动程序,Windows">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用httpie工具对nodejs express进行post测试">
-<meta property="og:url" content="https://www.hoxz.me/2017/10/20/httpie-nodejs-post/index.html">
+<meta property="og:title" content="利用同步事件实现驱动主动通知应用">
+<meta property="og:url" content="https://www.hoxz.me/2018/04/22/kevent-driver-to-app/index.html">
 <meta property="og:site_name" content="Hoxz的博客">
-<meta property="og:description" content="Express端解析post请求需要通过body-parser中间件，使用npm安装并引入该中间件，然后利用app.use使用： 1234// 接收post json，http头中Content-Type==application/jsonapp.use(bodyparser.json());// 接收由表单提交来的jsonapp.use(bodyparser.urlencoded(&amp;#123;e">
+<meta property="og:description" content="一、同步事件对数据结构 KEVENT 进行初始化、等待和设置，实现多个线程之间的同步。例如，希望主线程 A 在等待线程 B 完成某事后才能做某事，可在主线程 A 中配置KEVENT事件等待，在线程B中完成操作后，对正在等待的KEVENT事件进行设置即可。 实例如下： 123456789101112131415161718// 定义一个事件KEVENT event;// 事件初始化KeInitial">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-20T15:36:10.646Z">
+<meta property="og:image" content="http://p00975ub1.bkt.clouddn.com//201801211735_65.jpg">
+<meta property="og:updated_time" content="2018-04-22T14:08:09.777Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用httpie工具对nodejs express进行post测试">
-<meta name="twitter:description" content="Express端解析post请求需要通过body-parser中间件，使用npm安装并引入该中间件，然后利用app.use使用： 1234// 接收post json，http头中Content-Type==application/jsonapp.use(bodyparser.json());// 接收由表单提交来的jsonapp.use(bodyparser.urlencoded(&amp;#123;e">
+<meta name="twitter:title" content="利用同步事件实现驱动主动通知应用">
+<meta name="twitter:description" content="一、同步事件对数据结构 KEVENT 进行初始化、等待和设置，实现多个线程之间的同步。例如，希望主线程 A 在等待线程 B 完成某事后才能做某事，可在主线程 A 中配置KEVENT事件等待，在线程B中完成操作后，对正在等待的KEVENT事件进行设置即可。 实例如下： 123456789101112131415161718// 定义一个事件KEVENT event;// 事件初始化KeInitial">
+<meta name="twitter:image" content="http://p00975ub1.bkt.clouddn.com//201801211735_65.jpg">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hoxz.me/2017/10/20/httpie-nodejs-post/"/>
+  <link rel="canonical" href="https://www.hoxz.me/2018/04/22/kevent-driver-to-app/"/>
 
 
 
 
 
-  <title>利用httpie工具对nodejs express进行post测试 | Hoxz的博客</title>
+  <title>利用同步事件实现驱动主动通知应用 | Hoxz的博客</title>
   
 
 
@@ -243,7 +245,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hoxz.me/2017/10/20/httpie-nodejs-post/">
+    <link itemprop="mainEntityOfPage" href="https://www.hoxz.me/2018/04/22/kevent-driver-to-app/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hoxz">
@@ -260,7 +262,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">利用httpie工具对nodejs express进行post测试</h2>
+          <h2 class="post-title" itemprop="name headline">利用同步事件实现驱动主动通知应用</h2>
         
 
         <div class="post-meta">
@@ -272,8 +274,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T23:10:49+08:00">
-                2017-10-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T20:43:40+08:00">
+                2018-04-22
               </time>
             
 
@@ -291,8 +293,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/20/httpie-nodejs-post/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/10/20/httpie-nodejs-post/" itemprop="commentsCount"></span>
+                <a href="/2018/04/22/kevent-driver-to-app/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/22/kevent-driver-to-app/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,10 +322,23 @@
       
 
       
-        <h3 id="Express端"><a href="#Express端" class="headerlink" title="Express端"></a>Express端</h3><p>解析post请求需要通过body-parser中间件，使用npm安装并引入该中间件，然后利用app.use使用：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 接收post json，http头中Content-Type==application/json</span></div><div class="line">app.use(bodyparser.json());</div><div class="line"><span class="comment">// 接收由表单提交来的json</span></div><div class="line">app.use(bodyparser.urlencoded(&#123;<span class="attr">extended</span>: <span class="literal">true</span>&#125;));</div></pre></td></tr></table></figure>
-<a id="more"></a> 
-<h3 id="httpie命令行参数"><a href="#httpie命令行参数" class="headerlink" title="httpie命令行参数"></a>httpie命令行参数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 使用post json方式</span></div><div class="line">http www.acb.xyz name=<span class="string">'test'</span> age=18</div><div class="line"><span class="comment"># 模拟表单进行post提交</span></div><div class="line">http -form www.abc.xyz name=<span class="string">'test'</span></div></pre></td></tr></table></figure>
+        <h3 id="一、同步事件"><a href="#一、同步事件" class="headerlink" title="一、同步事件"></a>一、同步事件</h3><p>对数据结构 <code>KEVENT</code> 进行初始化、等待和设置，实现多个线程之间的同步。例如，希望主线程 A 在等待线程 B 完成某事后才能做某事，可在主线程 A 中配置<code>KEVENT事件</code>等待，在线程B中完成操作后，对正在等待的<code>KEVENT事件</code>进行设置即可。</p>
+<p>实例如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义一个事件</span></div><div class="line">KEVENT event;</div><div class="line"><span class="comment">// 事件初始化</span></div><div class="line">KeInitializeEvent(&amp;event, SynchronizationEvent, FALSE);</div><div class="line"></div><div class="line">&lt;!-- more --&gt; </div><div class="line"></div><div class="line"><span class="comment">// ......</span></div><div class="line"></div><div class="line"><span class="comment">// 主线程A中：</span></div><div class="line"><span class="comment">// 在此处等待 KEVENT 事件。若该事件没有被设置，则会一直阻塞在这里继续等待。</span></div><div class="line">KeWaitForSingleObject(&amp;event, Executive, KernelMode, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="comment">// ......</span></div><div class="line"></div><div class="line"><span class="comment">// 线程B中：</span></div><div class="line"><span class="comment">// 在此处设置 KEVENT 事件。一旦设置了此事件，前面等待的地方将继续执行。</span></div><div class="line">KeSetEvent(&amp;event, <span class="number">0</span>, TRUE);</div></pre></td></tr></table></figure>
+<p>几个函数的原型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">VOID</div><div class="line">KeInitializeEvent(</div><div class="line">  IN PRKEVENT Event,  <span class="comment">// 所定义的事件</span></div><div class="line">  IN EVENT_TYPE Type,   <span class="comment">// 事件类型，分为 SynchronizationEvent 和 NotificationEvent 两种</span></div><div class="line">  IN BOOLEAN State      <span class="comment">// 初始化状态，一般设置为 FALSE，即等待者需要等待设置后才能通过。</span></div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">LONG</div><div class="line">KeSetEvent(</div><div class="line">  IN PREVENT event,     <span class="comment">// 要设置的事件</span></div><div class="line">  IN KPRIORITY Increment, <span class="comment">// 提升优先权</span></div><div class="line">  IN BOOLEAN Wait         <span class="comment">// 表示是否后面马上紧跟一个 KeWaitSingleObject 来等待这个时间，一般设置为 TRUE（事件初始化之后，一般就要开始等待了）。</span></div><div class="line">);</div></pre></td></tr></table></figure>
+<h3 id="二、驱动主动通知应用的实现方式"><a href="#二、驱动主动通知应用的实现方式" class="headerlink" title="二、驱动主动通知应用的实现方式"></a>二、驱动主动通知应用的实现方式</h3><p>应用程序：开一个线程，在线程内向驱动程序发送 IOCTL 请求，并等待 IOCTL 返回；主线程继续执行其他操作。</p>
+<p>驱动程序：在 IOCTL 分发函数（DeviceIoControl）中等待一个同步事件 event，当驱动程序中其他地方设置（Set）了该同步事件后，触发对之前在等待的 IOCTL 请求的响应。</p>
+<h3 id="三、测试结果"><a href="#三、测试结果" class="headerlink" title="三、测试结果"></a>三、测试结果</h3><p><img src="http://p00975ub1.bkt.clouddn.com//201801211735_65.jpg" alt="测试结果"></p>
+<p>可以看出，若为串行操作，应用向驱动发送 IOCTL 请求①，在驱动等待为该请求服务的数据到来的期间，应用不再发送其他 IOCTL 请求，这种情况下可以正常响应，相当于阻塞了 IOCTL 通道。若为并行操作，应用向驱动发送 IOCTL 请求②，在驱动等待为该请求服务的数据到来期间，应用又向驱动发送了 IOCTL 请求③，经测试，驱动收不到该请求，再次证明 IOCTL 通道被阻塞。</p>
+<hr>
+<p>参考资料：</p>
+<ol>
+<li>《Windows内核安全与驱动开发》4.4.3 &amp; 5.3</li>
+<li><a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/kernel/defining-and-using-an-event-object" target="_blank" rel="external">Microsoft Doc - Windows Driver: Defining and Using an Event Object</a></li>
+</ol>
+
       
     </div>
     
@@ -340,7 +355,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+            <a href="/tags/驱动程序/" rel="tag"># 驱动程序</a>
+          
+            <a href="/tags/Windows/" rel="tag"># Windows</a>
           
         </div>
       
@@ -353,14 +370,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/04/22/react-router-4-tips/" rel="next" title="React Router 4 采坑实录">
+                <i class="fa fa-chevron-left"></i> React Router 4 采坑实录
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/20/mongolass-id/" rel="prev" title="mongolass通过默认生成的_id进行操作">
-                mongolass通过默认生成的_id进行操作 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/22/ndis-miniport-driver-ioctl/" rel="prev" title="NDIS小端口驱动实现IOCTL分发">
+                NDIS小端口驱动实现IOCTL分发 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -511,7 +532,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Express端"><span class="nav-number">1.</span> <span class="nav-text">Express端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#httpie命令行参数"><span class="nav-number">2.</span> <span class="nav-text">httpie命令行参数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、同步事件"><span class="nav-number">1.</span> <span class="nav-text">一、同步事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、驱动主动通知应用的实现方式"><span class="nav-number">2.</span> <span class="nav-text">二、驱动主动通知应用的实现方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、测试结果"><span class="nav-number">3.</span> <span class="nav-text">三、测试结果</span></a></li></ol></div>
             
 
           </div>
