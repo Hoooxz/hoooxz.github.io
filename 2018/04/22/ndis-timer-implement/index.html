@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="一、初始化 NDIS 定时器 任何NDIS驱动程序都可以有多个定时器，可以是一次性或周期性的。NDIS_TIMER_CHARACTERISTICS结构定义了定时器的若干属性，其中一项是NetTimerCallback函数入口。当定时器到期时，NDIS调用NetTimerCallback函数执行定时任务。  初始化定时器：调用NdisAllocateTimerObject函数，传入自己定义的NDIS">
+<meta name="description" content="一、初始化 NDIS 定时器任何NDIS驱动程序都可以有多个定时器，可以是一次性或周期性的。NDIS_TIMER_CHARACTERISTICS结构定义了定时器的若干属性，其中一项是NetTimerCallback函数入口。当定时器到期时，NDIS调用NetTimerCallback函数执行定时任务。  初始化定时器：调用NdisAllocateTimerObject函数，传入自己定义的NDIS_">
 <meta name="keywords" content="驱动程序,Windows,NDIS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NDIS定时器工作机制">
 <meta property="og:url" content="https://www.hoxz.me/2018/04/22/ndis-timer-implement/index.html">
 <meta property="og:site_name" content="Hoxz的博客">
-<meta property="og:description" content="一、初始化 NDIS 定时器 任何NDIS驱动程序都可以有多个定时器，可以是一次性或周期性的。NDIS_TIMER_CHARACTERISTICS结构定义了定时器的若干属性，其中一项是NetTimerCallback函数入口。当定时器到期时，NDIS调用NetTimerCallback函数执行定时任务。  初始化定时器：调用NdisAllocateTimerObject函数，传入自己定义的NDIS">
+<meta property="og:description" content="一、初始化 NDIS 定时器任何NDIS驱动程序都可以有多个定时器，可以是一次性或周期性的。NDIS_TIMER_CHARACTERISTICS结构定义了定时器的若干属性，其中一项是NetTimerCallback函数入口。当定时器到期时，NDIS调用NetTimerCallback函数执行定时任务。  初始化定时器：调用NdisAllocateTimerObject函数，传入自己定义的NDIS_">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-22T14:10:52.860Z">
+<meta property="og:updated_time" content="2018-04-22T14:14:17.343Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NDIS定时器工作机制">
-<meta name="twitter:description" content="一、初始化 NDIS 定时器 任何NDIS驱动程序都可以有多个定时器，可以是一次性或周期性的。NDIS_TIMER_CHARACTERISTICS结构定义了定时器的若干属性，其中一项是NetTimerCallback函数入口。当定时器到期时，NDIS调用NetTimerCallback函数执行定时任务。  初始化定时器：调用NdisAllocateTimerObject函数，传入自己定义的NDIS">
+<meta name="twitter:description" content="一、初始化 NDIS 定时器任何NDIS驱动程序都可以有多个定时器，可以是一次性或周期性的。NDIS_TIMER_CHARACTERISTICS结构定义了定时器的若干属性，其中一项是NetTimerCallback函数入口。当定时器到期时，NDIS调用NetTimerCallback函数执行定时任务。  初始化定时器：调用NdisAllocateTimerObject函数，传入自己定义的NDIS_">
 
 
 
@@ -320,67 +320,42 @@
       
 
       
-        <p>一、初始化 NDIS 定时器</p>
-<p>任何NDIS驱动程序都可以有多个定时器，可以是一次性或周期性的。NDIS_TIMER_CHARACTERISTICS结构定义了定时器的若干属性，其中一项是NetTimerCallback函数入口。当定时器到期时，NDIS调用NetTimerCallback函数执行定时任务。</p>
+        <h3 id="一、初始化-NDIS-定时器"><a href="#一、初始化-NDIS-定时器" class="headerlink" title="一、初始化 NDIS 定时器"></a>一、初始化 NDIS 定时器</h3><p>任何NDIS驱动程序都可以有多个定时器，可以是一次性或周期性的。<code>NDIS_TIMER_CHARACTERISTICS</code>结构定义了定时器的若干属性，其中一项是<code>NetTimerCallback</code>函数入口。当定时器到期时，NDIS调用<code>NetTimerCallback</code>函数执行定时任务。</p>
 <ul>
-<li>初始化定时器：调用NdisAllocateTimerObject函数，传入自己定义的NDIS_TIMER_CHARACTERISTICS结构</li>
-<li>启动定时器：调用NdisSetTimerObject函数</li>
-<li>释放定时器：调用NdisFreeTimerObject函数</li>
+<li>初始化定时器：调用<code>NdisAllocateTimerObject</code>函数，传入自己定义的<code>NDIS_TIMER_CHARACTERISTICS</code>结构</li>
+<li>启动定时器：调用<code>NdisSetTimerObject</code>函数</li>
+<li>释放定时器：调用<code>NdisFreeTimerObject</code>函数</li>
 </ul>
-<p>其中，NdisAllocateTimerObject函数原型为：</p>
-<pre><code>NDIS_STATUS NdisAllocateTimerObject(
-  _In_  NDIS_HANDLE                 NdisHandle,
-  _In_  PNDIS_TIMER_CHARACTERISTICS TimerCharacteristics,
-  _Out_ PNDIS_HANDLE                pTimerObject
-);
-</code></pre><a id="more"></a> 
-<p>二、启动和清除定时器</p>
-<p>利用NdisSetTimerObject函数可令驱动程序在指定的时间间隔或定期之后触发定时任务函数，其函数原型为：</p>
-<pre><code>BOOLEAN NdisSetTimerObject(
-  _In_     NDIS_HANDLE   TimerObject,
-  _In_     LARGE_INTEGER DueTime,
-  _In_opt_ LONG          MillisecondsPeriod,
-  _In_opt_ PVOID         FunctionContext
-);
-</code></pre><p>DueTime参数指定计时器到期的绝对或相对时间。如果为负值，则到期时间是相对于当前系统时间；否则，到期时间是绝对的。到期时间以系统时间单位（100纳秒间隔）表示。绝对到期时间跟踪系统时间的任何变化；相对过期时间不受系统时间变化的影响。</p>
-<p>MillisecondsPeriod参数指定定时器的可选重复间隔（以毫秒为单位）。若大于或等于零，则定时器以该间隔周期性触发；若为零，则为非周期性定时器。（参考自 KeSetTimerEx 函数）</p>
-<p>给出一些KeSetTimerEx函数的示例：</p>
-<pre><code>LARGE_INTEGER duetime = {0};
-#define POLLING_INTERVAL 3000
-// KeSetTimer(&amp;my_timer,timeout,&amp;KiTimerExpireDpc); // 仅仅只能设置一次  
-// KeSetTimerEx(&amp;my_timer, timeout, period, &amp;KiTimerExpireDpc); // 这个可以循环设置  
-KeSetTimerEx(&amp;device_extension-&gt;my_timer, duetime, POLLING_INTERVAL, &amp;deviceEx-&gt;KiTimerDpc);  
-// KeSetTimerEx语句启动周期定时器。由于duetime参数是0，所以定时器立即进入信号态。然后每隔POLLING_INTERVAL=3秒触发一次。
-</code></pre><p>调用NdisCancelTimerObject函数可取消之前调用NdisSetTimerObject函数设置的定时器。如果在调用NdisCancelTimerObject之前定时已经到时，则NDIS可能仍会调用NetTimerCallback。</p>
-<p>关于NdisSetTimerObject函数的更多信息，请参考 KeSetTimerEx 函数的介绍。</p>
-<p>三、定时任务函数</p>
-<p>定时器触发时，NDIS调用NetTimerCallback函数，其函数原型为：</p>
-<pre><code>NDIS_TIMER_FUNCTION NdisTimerFunction;
-
-void NdisTimerFunction(
-  PVOID SystemSpecific1,
-  PVOID FunctionContext,
-  PVOID SystemSpecific2,
-  PVOID SystemSpecific3
-)
-{...}
-</code></pre><p>FunctionContext参数指向驱动上下文，FunctionContext的默认值在NDIS_TIMER_CHARACTERISTICS结构中指定。值得注意的是，驱动在调用NdisSetTimerObject函数时，仍可传入一个FunctionContext参数。如此时传入了非 NULL 值，则该值会传给NetTimerCallback函数；否则，将传入NDIS_TIMER_CHARACTERISTICS结构中指定的默认值。</p>
-<p>任何 NDIS 驱动程序都可以有多个NetTimerCallback函数，每个这样的NetTimerCallback函数都必须与不同的驱动程序初始化的定时器关联。</p>
-<p>如果NetTimerCallback函数与其他函数共享驱动资源，则应使用自旋锁来同步对这些资源的访问。</p>
-<p>四、Microsoft 文档链接</p>
+<p>其中，<code>NdisAllocateTimerObject</code>函数原型为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function">NDIS_STATUS <span class="title">NdisAllocateTimerObject</span><span class="params">(</span></span></div><div class="line"><span class="function"><span class="params">  _In_  NDIS_HANDLE                 NdisHandle,</span></span></div><div class="line"><span class="function"><span class="params">  _In_  PNDIS_TIMER_CHARACTERISTICS TimerCharacteristics,</span></span></div><div class="line"><span class="function"><span class="params">  _Out_ PNDIS_HANDLE                pTimerObject</span></span></div><div class="line"><span class="function"><span class="params">)</span></span>;</div></pre></td></tr></table></figure>
+<a id="more"></a> 
+<h3 id="二、启动和清除定时器"><a href="#二、启动和清除定时器" class="headerlink" title="二、启动和清除定时器"></a>二、启动和清除定时器</h3><p>利用<code>NdisSetTimerObject</code>函数可令驱动程序在指定的时间间隔或定期之后触发定时任务函数，其函数原型为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function">BOOLEAN <span class="title">NdisSetTimerObject</span><span class="params">(</span></span></div><div class="line"><span class="function"><span class="params">  _In_     NDIS_HANDLE   TimerObject,</span></span></div><div class="line"><span class="function"><span class="params">  _In_     LARGE_INTEGER DueTime,</span></span></div><div class="line"><span class="function"><span class="params">  _In_opt_ LONG          MillisecondsPeriod,</span></span></div><div class="line"><span class="function"><span class="params">  _In_opt_ PVOID         FunctionContext</span></span></div><div class="line"><span class="function"><span class="params">)</span></span>;</div></pre></td></tr></table></figure>
+<p><code>DueTime</code>参数指定计时器到期的绝对或相对时间。如果为负值，则到期时间是相对于当前系统时间；否则，到期时间是绝对的。到期时间以系统时间单位（100纳秒间隔）表示。绝对到期时间跟踪系统时间的任何变化；相对过期时间不受系统时间变化的影响。</p>
+<p><code>MillisecondsPeriod</code>参数指定定时器的可选重复间隔（以毫秒为单位）。若大于或等于零，则定时器以该间隔周期性触发；若为零，则为非周期性定时器。<em>（参考自 KeSetTimerEx 函数）</em></p>
+<p>给出一些<code>KeSetTimerEx</code>函数的示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">LARGE_INTEGER duetime = &#123;<span class="number">0</span>&#125;;</div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> POLLING_INTERVAL 3000</span></div><div class="line"><span class="comment">// KeSetTimer(&amp;my_timer,timeout,&amp;KiTimerExpireDpc); // 仅仅只能设置一次  </span></div><div class="line"><span class="comment">// KeSetTimerEx(&amp;my_timer, timeout, period, &amp;KiTimerExpireDpc); // 这个可以循环设置  </span></div><div class="line">KeSetTimerEx(&amp;device_extension-&gt;my_timer, duetime, POLLING_INTERVAL, &amp;deviceEx-&gt;KiTimerDpc);  </div><div class="line"><span class="comment">// KeSetTimerEx语句启动周期定时器。由于duetime参数是0，所以定时器立即进入信号态。然后每隔POLLING_INTERVAL=3秒触发一次。</span></div></pre></td></tr></table></figure>
+<p>调用<code>NdisCancelTimerObject</code>函数可取消之前调用<code>NdisSetTimerObject</code>函数设置的定时器。如果在调用<code>NdisCancelTimerObject</code>之前定时已经到时，则NDIS可能仍会调用<code>NetTimerCallback</code>。</p>
+<p>关于<code>NdisSetTimerObject</code>函数的更多信息，请参考 <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/content/wdm/nf-wdm-kesettimerex" target="_blank" rel="external">KeSetTimerEx</a> 函数的介绍。</p>
+<h3 id="三、定时任务函数"><a href="#三、定时任务函数" class="headerlink" title="三、定时任务函数"></a>三、定时任务函数</h3><p>定时器触发时，NDIS调用<code>NetTimerCallback</code>函数，其函数原型为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">NDIS_TIMER_FUNCTION NdisTimerFunction;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">NdisTimerFunction</span><span class="params">(</span></span></div><div class="line"><span class="function"><span class="params">  PVOID SystemSpecific1,</span></span></div><div class="line"><span class="function"><span class="params">  PVOID FunctionContext,</span></span></div><div class="line"><span class="function"><span class="params">  PVOID SystemSpecific2,</span></span></div><div class="line"><span class="function"><span class="params">  PVOID SystemSpecific3</span></span></div><div class="line"><span class="function"><span class="params">)</span></span></div><div class="line"><span class="function"></span>&#123;...&#125;</div></pre></td></tr></table></figure>
+<p><code>FunctionContext</code>参数指向驱动上下文，<code>FunctionContext</code>的默认值在<code>NDIS_TIMER_CHARACTERISTICS</code>结构中指定。值得注意的是，驱动在调用<code>NdisSetTimerObject</code>函数时，仍可传入一个<code>FunctionContext</code>参数。如此时传入了非 NULL 值，则该值会传给<code>NetTimerCallback</code>函数；否则，将传入<code>NDIS_TIMER_CHARACTERISTICS</code>结构中指定的默认值。</p>
+<p>任何 NDIS 驱动程序都可以有多个<code>NetTimerCallback</code>函数，每个这样的<code>NetTimerCallback</code>函数都必须与不同的驱动程序初始化的定时器关联。</p>
+<p>如果<code>NetTimerCallback</code>函数与其他函数共享驱动资源，则应使用自旋锁来同步对这些资源的访问。</p>
+<h3 id="四、Microsoft-文档链接"><a href="#四、Microsoft-文档链接" class="headerlink" title="四、Microsoft 文档链接"></a>四、Microsoft 文档链接</h3><ol>
+<li>数据结构：<a href="https://msdn.microsoft.com/library/windows/hardware/ff567886" target="_blank" rel="external"><strong>NDIS_TIMER_CHARACTERISTICS</strong></a></li>
+</ol>
 <ol>
-<li><p>数据结构：NDIS_TIMER_CHARACTERISTICS</p>
-</li>
-<li><p>调用函数：NdisAllocateTimerObject、NdisSetTimerObject、NdisCancelTimerObject、NdisFreeTimerObject</p>
-</li>
-<li><p>要实现的函数：NetTimerCallback</p>
-</li>
+<li>调用函数：<a href="https://msdn.microsoft.com/library/windows/hardware/ff561618" target="_blank" rel="external"><strong>NdisAllocateTimerObject</strong></a>、<a href="https://msdn.microsoft.com/library/windows/hardware/ff564563" target="_blank" rel="external"><strong>NdisSetTimerObject</strong></a>、<a href="https://msdn.microsoft.com/library/windows/hardware/ff561624" target="_blank" rel="external"><strong>NdisCancelTimerObject</strong></a>、<a href="https://msdn.microsoft.com/library/windows/hardware/ff562605" target="_blank" rel="external"><strong>NdisFreeTimerObject</strong></a></li>
+</ol>
+<ol>
+<li>要实现的函数：<a href="https://msdn.microsoft.com/library/windows/hardware/ff568351" target="_blank" rel="external"><strong>NetTimerCallback</strong></a></li>
 </ol>
 <hr>
 <p>参考链接：</p>
 <ol>
-<li>关于内核定时器,DPC,线程的使用</li>
-<li>Github - Microsoft - NDIS Virtual Miniport Driver</li>
+<li><a href="https://blog.csdn.net/kingswb/article/details/51714430" target="_blank" rel="external">关于内核定时器,DPC,线程的使用</a></li>
+<li><a href="https://github.com/Microsoft/Windows-driver-samples/tree/master/network/ndis/netvmini/6x" target="_blank" rel="external">Github - Microsoft - NDIS Virtual Miniport Driver</a></li>
 </ol>
 
       
@@ -483,8 +458,17 @@ void NdisTimerFunction(
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -555,6 +539,22 @@ void NdisTimerFunction(
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、初始化-NDIS-定时器"><span class="nav-number">1.</span> <span class="nav-text">一、初始化 NDIS 定时器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、启动和清除定时器"><span class="nav-number">2.</span> <span class="nav-text">二、启动和清除定时器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、定时任务函数"><span class="nav-number">3.</span> <span class="nav-text">三、定时任务函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、Microsoft-文档链接"><span class="nav-number">4.</span> <span class="nav-text">四、Microsoft 文档链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

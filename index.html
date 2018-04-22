@@ -309,20 +309,14 @@
 
       
         
-          <p>一、初始化 NDIS 定时器</p>
-<p>任何NDIS驱动程序都可以有多个定时器，可以是一次性或周期性的。NDIS_TIMER_CHARACTERISTICS结构定义了定时器的若干属性，其中一项是NetTimerCallback函数入口。当定时器到期时，NDIS调用NetTimerCallback函数执行定时任务。</p>
+          <h3 id="一、初始化-NDIS-定时器"><a href="#一、初始化-NDIS-定时器" class="headerlink" title="一、初始化 NDIS 定时器"></a>一、初始化 NDIS 定时器</h3><p>任何NDIS驱动程序都可以有多个定时器，可以是一次性或周期性的。<code>NDIS_TIMER_CHARACTERISTICS</code>结构定义了定时器的若干属性，其中一项是<code>NetTimerCallback</code>函数入口。当定时器到期时，NDIS调用<code>NetTimerCallback</code>函数执行定时任务。</p>
 <ul>
-<li>初始化定时器：调用NdisAllocateTimerObject函数，传入自己定义的NDIS_TIMER_CHARACTERISTICS结构</li>
-<li>启动定时器：调用NdisSetTimerObject函数</li>
-<li>释放定时器：调用NdisFreeTimerObject函数</li>
+<li>初始化定时器：调用<code>NdisAllocateTimerObject</code>函数，传入自己定义的<code>NDIS_TIMER_CHARACTERISTICS</code>结构</li>
+<li>启动定时器：调用<code>NdisSetTimerObject</code>函数</li>
+<li>释放定时器：调用<code>NdisFreeTimerObject</code>函数</li>
 </ul>
-<p>其中，NdisAllocateTimerObject函数原型为：</p>
-<pre><code>NDIS_STATUS NdisAllocateTimerObject(
-  _In_  NDIS_HANDLE                 NdisHandle,
-  _In_  PNDIS_TIMER_CHARACTERISTICS TimerCharacteristics,
-  _Out_ PNDIS_HANDLE                pTimerObject
-);
-</code></pre>
+<p>其中，<code>NdisAllocateTimerObject</code>函数原型为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function">NDIS_STATUS <span class="title">NdisAllocateTimerObject</span><span class="params">(</span></span></div><div class="line"><span class="function"><span class="params">  _In_  NDIS_HANDLE                 NdisHandle,</span></span></div><div class="line"><span class="function"><span class="params">  _In_  PNDIS_TIMER_CHARACTERISTICS TimerCharacteristics,</span></span></div><div class="line"><span class="function"><span class="params">  _Out_ PNDIS_HANDLE                pTimerObject</span></span></div><div class="line"><span class="function"><span class="params">)</span></span>;</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/22/ndis-timer-implement/#more" rel="contents">
