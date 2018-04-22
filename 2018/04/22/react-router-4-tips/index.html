@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Mongodb," />
+  <meta name="keywords" content="Node.js,React.js," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="mongolass采用了和mongoose类似的API，对主键进行操作时不能简单的使用_id字符串而使用对其进行格式化，如下： 1&amp;#123; _id: Mongolass.Types.ObjectId(id) &amp;#125;">
-<meta name="keywords" content="Mongodb">
+<meta name="description" content="总的来讲，万物皆组件，你 几乎 无法区分路由、页面、组件有什么区别。 引入在react-router-dom中引入所有需要的东西，如BrowserHistory、Route、Switch、Redirect。 你可能注意到，似乎没有了常见的Router元素。是的，Router已经被 BrowserHistory 和 HashHistory 所替代，原有的 history={browserHistor">
+<meta name="keywords" content="Node.js,React.js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mongolass通过默认生成的_id进行操作">
-<meta property="og:url" content="https://www.hoxz.me/2017/10/20/mongolass-id/index.html">
+<meta property="og:title" content="React Router 4 采坑实录">
+<meta property="og:url" content="https://www.hoxz.me/2018/04/22/react-router-4-tips/index.html">
 <meta property="og:site_name" content="Hoxz的博客">
-<meta property="og:description" content="mongolass采用了和mongoose类似的API，对主键进行操作时不能简单的使用_id字符串而使用对其进行格式化，如下： 1&amp;#123; _id: Mongolass.Types.ObjectId(id) &amp;#125;">
+<meta property="og:description" content="总的来讲，万物皆组件，你 几乎 无法区分路由、页面、组件有什么区别。 引入在react-router-dom中引入所有需要的东西，如BrowserHistory、Route、Switch、Redirect。 你可能注意到，似乎没有了常见的Router元素。是的，Router已经被 BrowserHistory 和 HashHistory 所替代，原有的 history={browserHistor">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-20T15:29:59.480Z">
+<meta property="og:updated_time" content="2018-04-22T12:25:51.419Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mongolass通过默认生成的_id进行操作">
-<meta name="twitter:description" content="mongolass采用了和mongoose类似的API，对主键进行操作时不能简单的使用_id字符串而使用对其进行格式化，如下： 1&amp;#123; _id: Mongolass.Types.ObjectId(id) &amp;#125;">
+<meta name="twitter:title" content="React Router 4 采坑实录">
+<meta name="twitter:description" content="总的来讲，万物皆组件，你 几乎 无法区分路由、页面、组件有什么区别。 引入在react-router-dom中引入所有需要的东西，如BrowserHistory、Route、Switch、Redirect。 你可能注意到，似乎没有了常见的Router元素。是的，Router已经被 BrowserHistory 和 HashHistory 所替代，原有的 history={browserHistor">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hoxz.me/2017/10/20/mongolass-id/"/>
+  <link rel="canonical" href="https://www.hoxz.me/2018/04/22/react-router-4-tips/"/>
 
 
 
 
 
-  <title>mongolass通过默认生成的_id进行操作 | Hoxz的博客</title>
+  <title>React Router 4 采坑实录 | Hoxz的博客</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hoxz.me/2017/10/20/mongolass-id/">
+    <link itemprop="mainEntityOfPage" href="https://www.hoxz.me/2018/04/22/react-router-4-tips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hoxz">
@@ -260,7 +260,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">mongolass通过默认生成的_id进行操作</h2>
+          <h2 class="post-title" itemprop="name headline">React Router 4 采坑实录</h2>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T23:12:06+08:00">
-                2017-10-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T20:22:20+08:00">
+                2018-04-22
               </time>
             
 
@@ -291,8 +291,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/20/mongolass-id/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/10/20/mongolass-id/" itemprop="commentsCount"></span>
+                <a href="/2018/04/22/react-router-4-tips/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/22/react-router-4-tips/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,8 +320,24 @@
       
 
       
-        <p>mongolass采用了和mongoose类似的API，对主键进行操作时不能简单的使用_id字符串<br>而使用对其进行格式化，如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123; _id: Mongolass.Types.ObjectId(id) &#125;</div></pre></td></tr></table></figure>
+        <p>总的来讲，万物皆组件，你 <del>几乎</del> 无法区分路由、页面、组件有什么区别。</p>
+<h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>在<code>react-router-dom</code>中引入所有需要的东西，如<code>BrowserHistory</code>、<code>Route</code>、<code>Switch</code>、<code>Redirect</code>。</p>
+<p>你可能注意到，似乎没有了常见的<code>Router</code>元素。是的，<code>Router</code>已经被 BrowserHistory 和 HashHistory 所替代，原有的 history={browserHistory} 或 history={hashHistory} 已不需要，且 BrowserHistory 无需配置 Server。实例如下：</p>
+<a id="more"></a> 
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 旧的方式，需为 browserHistory 配置 Server</span></div><div class="line"><span class="keyword">import</span> &#123; Router, Route, browserHistory &#125; <span class="keyword">from</span> <span class="string">'react-router'</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RouterMap</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;Router history=&#123;browserHistory&#125;&gt;                  <span class="comment">// 旧的方式</span></div><div class="line">        &lt;div&gt;</div><div class="line">          &lt;Route path=<span class="string">"/"</span> exact component=&#123; Home &#125; /&gt;</div><div class="line">          &lt;Route path=<span class="string">"/about"</span> component=&#123; About &#125; /&gt;</div><div class="line">        &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">      &lt;/</span>Router&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// React Router 4 的方式，不需配置 Server</span></div><div class="line"><span class="keyword">import</span> &#123; Route, BrowserRouter &#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RouterMap</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;BrowserRouter&gt;                                    <span class="comment">// 新的方式</span></div><div class="line">        &lt;div&gt;</div><div class="line">          &lt;Route path=<span class="string">"/"</span> exact component=&#123; Home &#125; /&gt;</div><div class="line">          &lt;Route path=<span class="string">"/city"</span> exact component=&#123; City &#125; /&gt;</div><div class="line">          &lt;Route path=<span class="string">"/about"</span> component=&#123; Nothing &#125; /&gt;</div><div class="line">        &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">      &lt;/</span>BrowserRouter&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="嵌套路由"><a href="#嵌套路由" class="headerlink" title="嵌套路由"></a>嵌套路由</h3><p>原有的嵌套路由方式为在父路由的<code>&lt;Route&gt;</code>内直接嵌套子路由，然后父路由组件内嵌入<code>{ this.props.children }</code>。V4 版本中取消了这一方式，改为将子路由直接写入父路由组件，更加符合了”万物皆组件”的理念。示例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 父路由组件</span></div><div class="line">render() &#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;div&gt;</div><div class="line">      &lt;Layout&gt;</div><div class="line">        &lt;Header&gt;Header&lt;<span class="regexp">/Header&gt;</span></div><div class="line"><span class="regexp">        &lt;Content&gt;</span></div><div class="line"><span class="regexp">          &lt;div&gt;</span></div><div class="line"><span class="regexp">            &lt;Route exact path='/</span>city<span class="string">' component=&#123; CityList &#125; /&gt;</span></div><div class="line"><span class="string">            &lt;Route path='</span>/city/beijing<span class="string">' component=&#123; CityDetail &#125; /&gt;</span></div><div class="line"><span class="string">            &lt;Redirect to='</span>/city<span class="string">' /&gt;</span></div><div class="line"><span class="string">          &lt;/div&gt;</span></div><div class="line"><span class="string">        &lt;/Content&gt;</span></div><div class="line"><span class="string">        &lt;Footer&gt;Footer&lt;/Footer&gt;</span></div><div class="line"><span class="string">      &lt;/Layout&gt;</span></div><div class="line"><span class="string">    &lt;/div&gt;</span></div><div class="line"><span class="string">  );</span></div><div class="line"><span class="string">&#125;</span></div></pre></td></tr></table></figure>
+<p>值得注意的是，嵌套路由的路径是绝对匹配的路径。如，父路由为<code>/city</code>，子路由若想匹配<code>/beijing</code>，只能输入<code>/city/beijing</code>。为了方便，可以使用<code>{ this.props.match.path + &#39;/beijing&#39; }</code>。</p>
+<h3 id="Switch-与-Redirect"><a href="#Switch-与-Redirect" class="headerlink" title="Switch 与 Redirect"></a>Switch 与 Redirect</h3><p>只渲染出第一个与当前访问地址匹配的 <code>&lt;Route&gt;</code> 或 <code>&lt;Redirect&gt;</code>。</p>
+<hr>
+<p>参考链接：</p>
+<ol>
+<li><a href="http://reacttraining.cn" target="_blank" rel="external">React Router中文文档</a></li>
+<li><a href="https://blog.csdn.net/sinat_17775997/article/details/77411324" target="_blank" rel="external">关于 React Router 4 的一切</a></li>
+<li><a href="https://segmentfault.com/a/1190000012258651" target="_blank" rel="external">react-router @4用法整理</a></li>
+<li><a href="https://blog.csdn.net/sinat_17775997/article/details/69218382" target="_blank" rel="external">初探 React Router 4.0</a></li>
+</ol>
+
       
     </div>
     
@@ -338,7 +354,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Mongodb/" rel="tag"># Mongodb</a>
+            <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+          
+            <a href="/tags/React-js/" rel="tag"># React.js</a>
           
         </div>
       
@@ -351,8 +369,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/20/httpie-nodejs-post/" rel="next" title="利用httpie工具对nodejs express进行post测试">
-                <i class="fa fa-chevron-left"></i> 利用httpie工具对nodejs express进行post测试
+              <a href="/2018/04/22/git-server-deploy/" rel="next" title="使用 Git 部署代码到服务器">
+                <i class="fa fa-chevron-left"></i> 使用 Git 部署代码到服务器
               </a>
             
           </div>
@@ -360,10 +378,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/20/java-mysql-environment/" rel="prev" title="搭建Java&MySQL开发环境">
-                搭建Java&MySQL开发环境 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -422,8 +436,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -494,6 +517,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引入"><span class="nav-number">1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套路由"><span class="nav-number">2.</span> <span class="nav-text">嵌套路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch-与-Redirect"><span class="nav-number">3.</span> <span class="nav-text">Switch 与 Redirect</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
