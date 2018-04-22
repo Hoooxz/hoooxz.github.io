@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="MySQL," />
+  <meta name="keywords" content="Git," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="将Excel转为CSV格式Excel中，通过右上角菜单栏：文件-&amp;gt;另存为-&amp;gt;选择.CSV文件。 修改CSV文件的编码方式使用Notepad++打开CSV文件，修改其编码方式为UTF-8 无BOM。">
-<meta name="keywords" content="MySQL">
+<meta name="description" content="使用 Node.js 开发前/后端时，由于node_modules等目录文件多、体积大，采用 FileZilla 等 FTP 工具拷贝工程显然不是一个理想的选择。这种情况下，采用 Git 的方法既经济又合理。 使用 Git 部署代码到服务器的总体思路为，在服务器上建立一个Git Server，每次将代码从本地push到Git Server时，利用Git Hooks将代码同步到我们要部署到工作目录下">
+<meta name="keywords" content="Git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="将Excel通过CSV格式导入MySQL">
-<meta property="og:url" content="https://www.hoxz.me/2017/10/22/excel-csv-mysql/index.html">
+<meta property="og:title" content="使用 Git 部署代码到服务器">
+<meta property="og:url" content="https://www.hoxz.me/2018/04/22/git-server-deploy/index.html">
 <meta property="og:site_name" content="Hoxz的博客">
-<meta property="og:description" content="将Excel转为CSV格式Excel中，通过右上角菜单栏：文件-&amp;gt;另存为-&amp;gt;选择.CSV文件。 修改CSV文件的编码方式使用Notepad++打开CSV文件，修改其编码方式为UTF-8 无BOM。">
+<meta property="og:description" content="使用 Node.js 开发前/后端时，由于node_modules等目录文件多、体积大，采用 FileZilla 等 FTP 工具拷贝工程显然不是一个理想的选择。这种情况下，采用 Git 的方法既经济又合理。 使用 Git 部署代码到服务器的总体思路为，在服务器上建立一个Git Server，每次将代码从本地push到Git Server时，利用Git Hooks将代码同步到我们要部署到工作目录下">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-22T09:51:04.107Z">
+<meta property="og:updated_time" content="2018-04-22T12:15:42.002Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="将Excel通过CSV格式导入MySQL">
-<meta name="twitter:description" content="将Excel转为CSV格式Excel中，通过右上角菜单栏：文件-&amp;gt;另存为-&amp;gt;选择.CSV文件。 修改CSV文件的编码方式使用Notepad++打开CSV文件，修改其编码方式为UTF-8 无BOM。">
+<meta name="twitter:title" content="使用 Git 部署代码到服务器">
+<meta name="twitter:description" content="使用 Node.js 开发前/后端时，由于node_modules等目录文件多、体积大，采用 FileZilla 等 FTP 工具拷贝工程显然不是一个理想的选择。这种情况下，采用 Git 的方法既经济又合理。 使用 Git 部署代码到服务器的总体思路为，在服务器上建立一个Git Server，每次将代码从本地push到Git Server时，利用Git Hooks将代码同步到我们要部署到工作目录下">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hoxz.me/2017/10/22/excel-csv-mysql/"/>
+  <link rel="canonical" href="https://www.hoxz.me/2018/04/22/git-server-deploy/"/>
 
 
 
 
 
-  <title>将Excel通过CSV格式导入MySQL | Hoxz的博客</title>
+  <title>使用 Git 部署代码到服务器 | Hoxz的博客</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hoxz.me/2017/10/22/excel-csv-mysql/">
+    <link itemprop="mainEntityOfPage" href="https://www.hoxz.me/2018/04/22/git-server-deploy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hoxz">
@@ -260,7 +260,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">将Excel通过CSV格式导入MySQL</h2>
+          <h2 class="post-title" itemprop="name headline">使用 Git 部署代码到服务器</h2>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T17:43:40+08:00">
-                2017-10-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T20:14:04+08:00">
+                2018-04-22
               </time>
             
 
@@ -291,8 +291,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/22/excel-csv-mysql/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/10/22/excel-csv-mysql/" itemprop="commentsCount"></span>
+                <a href="/2018/04/22/git-server-deploy/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/22/git-server-deploy/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,15 +320,37 @@
       
 
       
-        <h3 id="将Excel转为CSV格式"><a href="#将Excel转为CSV格式" class="headerlink" title="将Excel转为CSV格式"></a>将Excel转为CSV格式</h3><p>Excel中，通过右上角菜单栏：文件-&gt;另存为-&gt;选择.CSV文件。</p>
-<h3 id="修改CSV文件的编码方式"><a href="#修改CSV文件的编码方式" class="headerlink" title="修改CSV文件的编码方式"></a>修改CSV文件的编码方式</h3><p>使用Notepad++打开CSV文件，修改其编码方式为<code>UTF-8 无BOM</code>。</p>
+        <p>使用 Node.js 开发前/后端时，由于<code>node_modules</code>等目录文件多、体积大，采用 FileZilla 等 FTP 工具拷贝工程显然不是一个理想的选择。这种情况下，采用 Git 的方法既经济又合理。</p>
+<p>使用 Git 部署代码到服务器的总体思路为，在服务器上建立一个<code>Git Server</code>，每次将代码从本地<code>push</code>到<code>Git Server</code>时，利用<code>Git Hooks</code>将代码同步到我们要部署到工作目录下。</p>
 <a id="more"></a> 
-<h3 id="导入数据库"><a href="#导入数据库" class="headerlink" title="导入数据库"></a>导入数据库</h3><p>首先，确保数据库、表、字段的字符集为<code>UTF-8</code>。</p>
-<p>进入MySQL命令行后，执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 清空原有数据</div><div class="line">delete from &lt;表名&gt; </div><div class="line"># 导入数据</div><div class="line">load data local infile &apos;&lt;你的csv文件路径&gt;&apos; into table &lt;表名&gt; fields terminated by &apos;,&apos; lines terminated by &apos;\r\n&apos;;</div><div class="line"># 查看数据</div><div class="line">select * from &lt;表名&gt;</div></pre></td></tr></table></figure>
+<h3 id="在服务器上安装-Git"><a href="#在服务器上安装-Git" class="headerlink" title="在服务器上安装 Git"></a>在服务器上安装 Git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install git</div></pre></td></tr></table></figure>
+<p>如果你本地有<code>key公钥证书</code>，那就好办了，找到<code>id_rsa.pub</code>，复制其中的内容，添加到<code>~/.ssh/authorized_keys</code>文件中。没有的话，想办法生成一个。</p>
+<p>此外，你可能还需要打开<code>/etc/ssh/sshd_config</code>，修改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">RSAAuthentication yes         <span class="comment">#开启RSA认证功能  </span></div><div class="line">PubkeyAuthentication yes      <span class="comment">#开启公匙认证</span></div></pre></td></tr></table></figure>
+<h3 id="建立远程仓库"><a href="#建立远程仓库" class="headerlink" title="建立远程仓库"></a>建立远程仓库</h3><p>服务器上的远程仓库，也就是我们的<code>Git Server</code>。每次在本地修改过的代码，就是<code>push</code>到这里的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div><div class="line">mkdir git_rep</div><div class="line"><span class="built_in">cd</span> git_rep</div><div class="line">git --bare init hello.git     // 在远程建立一个裸仓库，作为 Git Server</div><div class="line"><span class="built_in">cd</span> hello.git</div><div class="line">sudo chmod 777 -R hello.git   // 修改权限，否则 push 的时候 objects 和 refs 目录会提示权限不足</div></pre></td></tr></table></figure>
+<h3 id="建立工作目录"><a href="#建立工作目录" class="headerlink" title="建立工作目录"></a>建立工作目录</h3><p>在服务器上克隆我们的远程仓库，作为要部署的工作目录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div><div class="line">git <span class="built_in">clone</span> ~/git_rep/hello.git</div><div class="line">sudo chmod 777 -R hello        // hello 是我们的工作目录。此处修改权限是必要的，否则钩子将无法同步代码。</div></pre></td></tr></table></figure>
+<h3 id="为远程仓库提供-hooks"><a href="#为远程仓库提供-hooks" class="headerlink" title="为远程仓库提供 hooks"></a>为远程仓库提供 hooks</h3><p>这是最关键的一步了。开始的时候提到过，每次<code>push</code>到<code>Git Server</code>的代码，经过<code>Git Hooks</code>（钩子），将代码同步到我们的工作目录下。Git 的钩子定义在<code>.git/hooks</code>目录下，我们添加一个<code>post-receive</code>文件，填写钩子要进行的操作。说白了，这就是个 bash 脚本，因此我们可以在里面执行任何我们需要执行的操作，比如说同步代码后重启我的 Node.js 服务器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/git_rep/hello.git/hooks</div><div class="line">vim post-receive</div><div class="line">sudo chmod +x post-receive</div></pre></td></tr></table></figure>
+<p>为了同步代码，在<code>post-receive</code>中填入的内容如下，实际上就是简单的 Git 版本管理。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line">DEPLOY_PATH=/home/xxx/hello/</div><div class="line"><span class="built_in">unset</span>  GIT_DIR <span class="comment">#这条命令很重要</span></div><div class="line"><span class="built_in">cd</span> <span class="variable">$DEPLOY_PATH</span></div><div class="line">git fetch --all</div><div class="line">git reset --hard origin/master</div></pre></td></tr></table></figure>
+<h3 id="本地仓库关联远程仓库"><a href="#本地仓库关联远程仓库" class="headerlink" title="本地仓库关联远程仓库"></a>本地仓库关联远程仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git init</div><div class="line">git remote add git_server git@ip:/home/xxx/git_rep/hello.git</div></pre></td></tr></table></figure>
+<p>修改代码后，<code>push</code>到远程仓库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m <span class="string">"xxxx"</span></div><div class="line">git push git_server master</div></pre></td></tr></table></figure>
+<p>查看工作目录<code>hello</code>下，就能看到最新提交的代码。</p>
+<blockquote>
+<p>如果遇到类似于 error: insufficient permission for adding an object to repository database .git/objects 的错误，是因为相应的目录没有提供权限，同样利用 sudo chmod 777 -R .git/objects 修改权限即可。</p>
+</blockquote>
 <p>参考链接：</p>
-<p><a href="http://blog.csdn.net/greyfreedom/article/details/61915658" target="_blank" rel="external">将Excel表格或者CSV文件导入到Mysql中</a></p>
-<p><a href="http://www.cnblogs.com/latifrons/archive/2012/09/07/2675141.html" target="_blank" rel="external">懒人懒办法：把Excel数据导入到MySQL中</a></p>
+<ol>
+<li><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="external">搭建 Git 服务器 - 廖雪峰</a></li>
+<li><a href="https://blog.csdn.net/qq_34284638/article/details/70154557" target="_blank" rel="external">本地 Git 仓库推送到服务器自建的 GGit 仓库实现目录文件同步教程</a></li>
+<li><a href="https://blog.csdn.net/bencjl/article/details/53699684" target="_blank" rel="external">Git 简单应用：部署代码到服务器</a></li>
+<li><a href="https://blog.csdn.net/u010837612/article/details/70825225?utm_source=itdadao&amp;utm_medium=referral" target="_blank" rel="external">Git Hook实现代码自动部署</a></li>
+<li><a href="https://blog.csdn.net/wsyw126/article/details/52167147" target="_blank" rel="external">服务器自动部署项目之 Git Hooks 神器</a></li>
+<li><a href="https://segmentfault.com/a/1190000005958827" target="_blank" rel="external">不需要钩子，使用 git push 部署网站</a>（较新版本的 Git 似乎采用了更简洁的方式）</li>
+</ol>
 
       
     </div>
@@ -346,7 +368,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+            <a href="/tags/Git/" rel="tag"># Git</a>
           
         </div>
       
@@ -359,8 +381,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/20/mysql-encode/" rel="next" title="MySQL编码问题">
-                <i class="fa fa-chevron-left"></i> MySQL编码问题
+              <a href="/2018/02/02/use-ioctl-in-ndis/" rel="next" title="NDIS小端口驱动实现IOCTL分发">
+                <i class="fa fa-chevron-left"></i> NDIS小端口驱动实现IOCTL分发
               </a>
             
           </div>
@@ -368,10 +390,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/18/ndisedge-learning-note/" rel="prev" title="NDIS小端口例程 ndisedge 学习笔记">
-                NDIS小端口例程 ndisedge 学习笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -521,7 +539,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#将Excel转为CSV格式"><span class="nav-number">1.</span> <span class="nav-text">将Excel转为CSV格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改CSV文件的编码方式"><span class="nav-number">2.</span> <span class="nav-text">修改CSV文件的编码方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导入数据库"><span class="nav-number">3.</span> <span class="nav-text">导入数据库</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#在服务器上安装-Git"><span class="nav-number">1.</span> <span class="nav-text">在服务器上安装 Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立远程仓库"><span class="nav-number">2.</span> <span class="nav-text">建立远程仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立工作目录"><span class="nav-number">3.</span> <span class="nav-text">建立工作目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为远程仓库提供-hooks"><span class="nav-number">4.</span> <span class="nav-text">为远程仓库提供 hooks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地仓库关联远程仓库"><span class="nav-number">5.</span> <span class="nav-text">本地仓库关联远程仓库</span></a></li></ol></div>
             
 
           </div>
