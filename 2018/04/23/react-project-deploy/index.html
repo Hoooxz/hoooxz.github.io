@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="MySQL," />
+  <meta name="keywords" content="Node.js,React.js,Linux," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="环境： Ubuntu 16.04 LTS MySQL 5.7.19 查看当前编码1show variables like &amp;apos;%character%&amp;apos;; Value值一栏，默认一般出现latin1编码方式。为了方便开发，我们将除了binary项外统一改为UTF-8。">
-<meta name="keywords" content="MySQL">
+<meta name="description" content="使用 React 开发前端项目，最后必然要部署到服务器上。本文就从一个初学者的角度，介绍一下我个人基于create-react-app脚手架尝试进行这项工作的经历。 部署一个 React 项目到服务器的总体思路为，通过build命令配合NODE_ENV将 React 工程编译为用于服务端的.html、.css、.js文件，然后交由静态服务器托管，用户请求并渲染页面后，通过 API 与后端交互。 配">
+<meta name="keywords" content="Node.js,React.js,Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL编码问题">
-<meta property="og:url" content="https://www.hoxz.me/2017/10/20/mysql-encode/index.html">
+<meta property="og:title" content="如何部署一个 React 项目">
+<meta property="og:url" content="https://www.hoxz.me/2018/04/23/react-project-deploy/index.html">
 <meta property="og:site_name" content="Hoxz的博客">
-<meta property="og:description" content="环境： Ubuntu 16.04 LTS MySQL 5.7.19 查看当前编码1show variables like &amp;apos;%character%&amp;apos;; Value值一栏，默认一般出现latin1编码方式。为了方便开发，我们将除了binary项外统一改为UTF-8。">
+<meta property="og:description" content="使用 React 开发前端项目，最后必然要部署到服务器上。本文就从一个初学者的角度，介绍一下我个人基于create-react-app脚手架尝试进行这项工作的经历。 部署一个 React 项目到服务器的总体思路为，通过build命令配合NODE_ENV将 React 工程编译为用于服务端的.html、.css、.js文件，然后交由静态服务器托管，用户请求并渲染页面后，通过 API 与后端交互。 配">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-20T15:37:13.833Z">
+<meta property="og:updated_time" content="2018-04-23T11:58:05.453Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL编码问题">
-<meta name="twitter:description" content="环境： Ubuntu 16.04 LTS MySQL 5.7.19 查看当前编码1show variables like &amp;apos;%character%&amp;apos;; Value值一栏，默认一般出现latin1编码方式。为了方便开发，我们将除了binary项外统一改为UTF-8。">
+<meta name="twitter:title" content="如何部署一个 React 项目">
+<meta name="twitter:description" content="使用 React 开发前端项目，最后必然要部署到服务器上。本文就从一个初学者的角度，介绍一下我个人基于create-react-app脚手架尝试进行这项工作的经历。 部署一个 React 项目到服务器的总体思路为，通过build命令配合NODE_ENV将 React 工程编译为用于服务端的.html、.css、.js文件，然后交由静态服务器托管，用户请求并渲染页面后，通过 API 与后端交互。 配">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hoxz.me/2017/10/20/mysql-encode/"/>
+  <link rel="canonical" href="https://www.hoxz.me/2018/04/23/react-project-deploy/"/>
 
 
 
 
 
-  <title>MySQL编码问题 | Hoxz的博客</title>
+  <title>如何部署一个 React 项目 | Hoxz的博客</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hoxz.me/2017/10/20/mysql-encode/">
+    <link itemprop="mainEntityOfPage" href="https://www.hoxz.me/2018/04/23/react-project-deploy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hoxz">
@@ -260,7 +260,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">MySQL编码问题</h2>
+          <h2 class="post-title" itemprop="name headline">如何部署一个 React 项目</h2>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T23:15:27+08:00">
-                2017-10-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-23T19:56:08+08:00">
+                2018-04-23
               </time>
             
 
@@ -291,8 +291,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/20/mysql-encode/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/10/20/mysql-encode/" itemprop="commentsCount"></span>
+                <a href="/2018/04/23/react-project-deploy/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/23/react-project-deploy/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,29 +320,31 @@
       
 
       
-        <p><em>环境：</em></p>
-<p><em>Ubuntu 16.04 LTS</em></p>
-<p><em>MySQL 5.7.19</em></p>
-<h3 id="查看当前编码"><a href="#查看当前编码" class="headerlink" title="查看当前编码"></a>查看当前编码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show variables like &apos;%character%&apos;;</div></pre></td></tr></table></figure>
-<p><code>Value</code>值一栏，默认一般出现<code>latin1</code>编码方式。为了方便开发，我们将除了<code>binary</code>项外统一改为<code>UTF-8</code>。</p>
-<a id="more"></a> 
-<h3 id="修改默认编码"><a href="#修改默认编码" class="headerlink" title="修改默认编码"></a>修改默认编码</h3><p>（仅适用于当前环境，MySQL不同版本的配置文件目录貌似不同）</p>
-<h5 id="1-打开配置文件"><a href="#1-打开配置文件" class="headerlink" title="1. 打开配置文件"></a>1. 打开配置文件</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/mysql/my.cnf</div></pre></td></tr></table></figure>
-<p>打开<code>my.cnf</code>后，会发现在此文件的最后有两行（此配置文件又引用了其他的两个配置文件，我们需要修改的是<code>mysqld.cnf</code> ，这是MySQL服务端基础配置文件 ）。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">!includedir /etc/mysql/conf.d  </div><div class="line">!includedir /etc/mysql/mysql.conf.d</div></pre></td></tr></table></figure>
-<h5 id="2-根据提示，打开mysql-conf-d，修改其下的文件"><a href="#2-根据提示，打开mysql-conf-d，修改其下的文件" class="headerlink" title="2. 根据提示，打开mysql.conf.d，修改其下的文件"></a>2. 根据提示，打开<code>mysql.conf.d</code>，修改其下的文件</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">vi /etc/mysql/mysql.conf.d/mysqld.cnf</div><div class="line"></div><div class="line"><span class="comment"># 在[mysqld] 的skip-external-locking下，添加character-set-server=utf8</span></div><div class="line">......  </div><div class="line">[mysqld]  </div><div class="line">......  </div><div class="line">skip-external-locking  </div><div class="line">character-set-server=utf8  </div><div class="line">......</div></pre></td></tr></table></figure>
-<h5 id="3-设置客户端的默认编码"><a href="#3-设置客户端的默认编码" class="headerlink" title="3. 设置客户端的默认编码"></a>3. 设置客户端的默认编码</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">vi /etc/mysql/conf.d/mysql.cnf</div><div class="line"></div><div class="line"><span class="comment"># 其中只有一行[mysql]，在其下添加default-character-set=utf8 </span></div><div class="line">[mysql]  </div><div class="line">default-character-set=utf8</div></pre></td></tr></table></figure>
-<h5 id="4-重启MySQL服务"><a href="#4-重启MySQL服务" class="headerlink" title="4. 重启MySQL服务"></a>4. 重启MySQL服务</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service mysql restart</div></pre></td></tr></table></figure>
-<h5 id="5-再次查看编码方式"><a href="#5-再次查看编码方式" class="headerlink" title="5. 再次查看编码方式"></a>5. 再次查看编码方式</h5><h3 id="修改已有数据库的编码"><a href="#修改已有数据库的编码" class="headerlink" title="修改已有数据库的编码"></a>修改已有数据库的编码</h3><p>查看编码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 查看数据库编码</div><div class="line">show variables like &apos;%character%&apos;;</div><div class="line"># 查看表编码</div><div class="line">show create table &lt;表名&gt;;</div><div class="line"># 查看字段编码</div><div class="line">show full columns from &lt;表名&gt;;</div></pre></td></tr></table></figure>
-<p>修改编码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 修改数据库编码</div><div class="line">alter database &lt;数据库名&gt; character set utf8;</div><div class="line"># 修改表编码</div><div class="line">alter table &lt;表名&gt; character set utf8;</div><div class="line"># 修改字段编码</div><div class="line">ALTER TABLE &lt;表名&gt; MODIFY COLUMN &lt;字段名&gt; &lt;字段类型&gt; CHARACTER SET utf8;</div></pre></td></tr></table></figure>
+        <p>使用 React 开发前端项目，最后必然要部署到服务器上。本文就从一个初学者的角度，介绍一下我个人基于<code>create-react-app</code>脚手架尝试进行这项工作的经历。</p>
+<p>部署一个 React 项目到服务器的总体思路为，通过<code>build</code>命令配合<code>NODE_ENV</code>将 React 工程编译为用于服务端的<code>.html</code>、<code>.css</code>、<code>.js</code>文件，然后交由静态服务器托管，用户请求并渲染页面后，通过 API 与后端交互。</p>
+<h3 id="配置编译-React-工程"><a href="#配置编译-React-工程" class="headerlink" title="配置编译 React 工程"></a>配置编译 React 工程</h3><h5 id="1-路由"><a href="#1-路由" class="headerlink" title="1. 路由"></a>1. 路由</h5><p>静态服务器托管的方式不能使用<code>BrowserRouter</code>，否则会导致页面加载或刷新为空的情况。具体原因有待进一步研究。所以，只能将<code>React Router</code>配置为<code>HashRouter</code>，具体配置方法我在<a href="http://hoxz.me/2018/04/22/react-router-4-tips/" target="_blank" rel="external">这里</a>有提到。</p>
+<h5 id="2-NODE-ENV"><a href="#2-NODE-ENV" class="headerlink" title="2. NODE_ENV"></a>2. NODE_ENV</h5><p>我们往往在开发环境和生产环境会使用不同的 API，即便他们完全相同。这样的好处是既能保证数据安全，又能使前后端不会过于耦合，方便迭代。</p>
+<p>使用<code>create-react-app</code>脚手架编译的命令是<code>yarn build</code>，相应的配置中为我们提供了对应的<code>NODE_ENV</code>。我们可以在代码中判断这一变量，提供不同的 API 或参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> configs = &#123;&#125;</div><div class="line"><span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">'production'</span>) &#123;</div><div class="line">  <span class="comment">/* 生产环境 */</span></div><div class="line">  configs = &#123; &#125;;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  <span class="comment">/* 开发环境 */</span></div><div class="line">  configs = &#123; &#125;;</div><div class="line">&#125;</div><div class="line"><span class="built_in">module</span>.exports = &#123; configs &#125;;</div></pre></td></tr></table></figure>
+<h5 id="3-Homepage"><a href="#3-Homepage" class="headerlink" title="3. Homepage"></a>3. Homepage</h5><p>编译好的版本默认是运行在服务器根域名上的，例如你的服务器域名为<code>www.xxx.yyy</code>，那么在你的网页里请求<code>/static/css/app.css</code>时，请求url为<code>www.xxx.yyy/static/css/app.css</code>。但如果你实际上通过 Nginx 把域名下的某个路径转发给托管着 React 项目的静态服务器，那么请求url为<code>www.xxx.yyy/static/css/app.css</code>就显然不可用了。当然如果要直接运行在根域名下，那这一步就可以不用关心了。</p>
+<p>假设Nginx配置如下：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># nginx.conf</span></div><div class="line"><span class="attribute">location</span> /react/ </div><div class="line">&#123;</div><div class="line">    <span class="attribute">root</span> /html/react/;</div><div class="line">    <span class="attribute">index</span> index.html;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此时，访问<code>www.xxx.yyy/react/</code>便是访问我们的 React 项目，但这只是<code>index.html</code>。<code>index.html</code>肯定请求了相关的<code>.css</code>和<code>.js</code>文件，不妨我们假设在<code>index.html</code>的同级目录下有<code>static/css/app.css</code>。如果还按照原来的配置，<code>index.html</code>中的<code>link</code>标签会指引浏览器去请求<code>www.xxx.yyy/static/css/app.css</code>，这显然不会得到正确的响应。我们的做法是，在<code>package.json</code>中配置<code>homepage</code>字段，作为 React 项目运行的根路径，编译过程中会自动给<code>index.html</code>以外的资源路径加上这个根路径前缀。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// package.json</div><div class="line">"homepage": "http://www.xxx.yyy/react"</div></pre></td></tr></table></figure>
+<p>这样，浏览器就会正确地请求<code>www.xxx.yyy/react/static/css/app.css</code>了。这一点在<code>create-react-app</code>的说明文档里有更详细的解释。</p>
+<h3 id="使用-pm2-的静态托管"><a href="#使用-pm2-的静态托管" class="headerlink" title="使用 pm2 的静态托管"></a>使用 pm2 的静态托管</h3><p>经常利用 Node.js 做后端的人肯定对<code>pm2</code>不能更熟悉了，利用它可以方便地管理我们的 Node 项目，而不是使用<code>node app.js</code> + <code>screen</code>这种复杂操作。令人想不到的是，其实 <code>pm2</code> 也提供了静态服务器的使用方法，功能上类似于<code>serve</code>这个 NPM 包。</p>
+<p>利用<code>pm2 serve</code>命令，指定路径、端口、自定义项目名、[可选]监控文件修改，即可运行起我们的 React 项目。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pm2 serve path port --name ProjectName --watch</div></pre></td></tr></table></figure>
+<h3 id="配置-Nginx-实现端口转发"><a href="#配置-Nginx-实现端口转发" class="headerlink" title="配置 Nginx 实现端口转发"></a>配置 Nginx 实现端口转发</h3><p>前面在介绍<code>homepage</code>字段的时候提到了一点 Nginx 端口转发，用到它的主要考虑就是在同一服务器上跑着多个项目，但又不想配置多个二级域名，毕竟涉及到域名解析、SSL 证书等操作起来不是很方便。按照前例，我们将 React 项目映射到<code>/react</code>路径下。</p>
+<p>Nginx 配置文件路径一般是<code>/etc/nginx/nginx.conf</code>，这里只给出我们修改的部分。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">server</div><div class="line">&#123;</div><div class="line">    ...</div><div class="line">    <span class="attribute">location</span> /react/</div><div class="line">    &#123;</div><div class="line">      proxy_pass http://localhost:6666/;  // 假设我在pm2 serve命令指定运行在6666端口    </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>肯定有人会有疑问，Nginx 本身就可以托管静态网页（<code>homepage</code>小节演示的 Nginx 配置方式），为何要大费周折，先利用<code>pm2</code>托管、再利用 Nginx 转发呢。其实这又涉及到了<code>React Router</code>的问题。<code>HashRouter</code>有一个弊端就是路径中带有<code>#</code>，但我暂时还没有找到使用<code>BrowserRouter</code>的方法，所以只好这样转发啦~</p>
+<hr>
 <p>参考链接：</p>
-<p><a href="http://www.jb51.net/article/30104.htm" target="_blank" rel="external">Linux下修改MySQL编码的方法</a></p>
-<p><a href="http://www.cnblogs.com/laijie/p/4978149.html" target="_blank" rel="external">ubuntu mysql编码设置5.5以后</a></p>
-<p><a href="http://blog.csdn.net/springsunss/article/details/70337915" target="_blank" rel="external">整理 ： 查看和修改 mysql库、表、字段编码</a></p>
-<p><a href="http://blog.csdn.net/apple9005/article/details/53188938" target="_blank" rel="external">Ubuntu 16.04.1下修改MySQL默认编码</a></p>
-<p><a href="http://www.jb51.net/article/82512.htm" target="_blank" rel="external">MySQL查看与修改当前数据库编码的方法</a></p>
+<ol>
+<li><a href="https://blog.csdn.net/uikoo9/article/details/79018750" target="_blank" rel="external">你所不知道的pm2</a></li>
+<li><a href="http://pm2.keymetrics.io/docs/usage/expose/" target="_blank" rel="external">PM2 - Serve</a></li>
+</ol>
 
       
     </div>
@@ -360,7 +362,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+            <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+          
+            <a href="/tags/React-js/" rel="tag"># React.js</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
         </div>
       
@@ -373,8 +379,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/20/java-mysql-environment/" rel="next" title="搭建Java&MySQL开发环境">
-                <i class="fa fa-chevron-left"></i> 搭建Java&MySQL开发环境
+              <a href="/2018/04/22/ndis-timer-implement/" rel="next" title="NDIS定时器工作机制">
+                <i class="fa fa-chevron-left"></i> NDIS定时器工作机制
               </a>
             
           </div>
@@ -382,10 +388,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/22/excel-csv-mysql/" rel="prev" title="将Excel通过CSV格式导入MySQL">
-                将Excel通过CSV格式导入MySQL <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -535,7 +537,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看当前编码"><span class="nav-number">1.</span> <span class="nav-text">查看当前编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改默认编码"><span class="nav-number">2.</span> <span class="nav-text">修改默认编码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-打开配置文件"><span class="nav-number">2.0.1.</span> <span class="nav-text">1. 打开配置文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-根据提示，打开mysql-conf-d，修改其下的文件"><span class="nav-number">2.0.2.</span> <span class="nav-text">2. 根据提示，打开mysql.conf.d，修改其下的文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-设置客户端的默认编码"><span class="nav-number">2.0.3.</span> <span class="nav-text">3. 设置客户端的默认编码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-重启MySQL服务"><span class="nav-number">2.0.4.</span> <span class="nav-text">4. 重启MySQL服务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-再次查看编码方式"><span class="nav-number">2.0.5.</span> <span class="nav-text">5. 再次查看编码方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改已有数据库的编码"><span class="nav-number">3.</span> <span class="nav-text">修改已有数据库的编码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置编译-React-工程"><span class="nav-number">1.</span> <span class="nav-text">配置编译 React 工程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-路由"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. 路由</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-NODE-ENV"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. NODE_ENV</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-Homepage"><span class="nav-number">1.0.3.</span> <span class="nav-text">3. Homepage</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-pm2-的静态托管"><span class="nav-number">2.</span> <span class="nav-text">使用 pm2 的静态托管</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置-Nginx-实现端口转发"><span class="nav-number">3.</span> <span class="nav-text">配置 Nginx 实现端口转发</span></a></li></ol></div>
             
 
           </div>

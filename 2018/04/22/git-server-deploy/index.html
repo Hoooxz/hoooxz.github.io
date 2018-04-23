@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Hoxz的博客">
 <meta property="og:description" content="使用 Node.js 开发前/后端时，由于node_modules等目录文件多、体积大，采用 FileZilla 等 FTP 工具拷贝工程显然不是一个理想的选择。这种情况下，采用 Git 的方法既经济又合理。 使用 Git 部署代码到服务器的总体思路为，在服务器上建立一个Git Server，每次将代码从本地push到Git Server时，利用Git Hooks将代码同步到我们要部署到工作目录下">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-22T12:27:44.345Z">
+<meta property="og:updated_time" content="2018-04-22T14:45:06.415Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 Git 部署代码到服务器">
 <meta name="twitter:description" content="使用 Node.js 开发前/后端时，由于node_modules等目录文件多、体积大，采用 FileZilla 等 FTP 工具拷贝工程显然不是一个理想的选择。这种情况下，采用 Git 的方法既经济又合理。 使用 Git 部署代码到服务器的总体思路为，在服务器上建立一个Git Server，每次将代码从本地push到Git Server时，利用Git Hooks将代码同步到我们要部署到工作目录下">
@@ -328,7 +328,7 @@
 <p>此外，你可能还需要打开<code>/etc/ssh/sshd_config</code>，修改：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">RSAAuthentication yes         <span class="comment">#开启RSA认证功能  </span></div><div class="line">PubkeyAuthentication yes      <span class="comment">#开启公匙认证</span></div></pre></td></tr></table></figure>
 <h3 id="建立远程仓库"><a href="#建立远程仓库" class="headerlink" title="建立远程仓库"></a>建立远程仓库</h3><p>服务器上的远程仓库，也就是我们的<code>Git Server</code>。每次在本地修改过的代码，就是<code>push</code>到这里的。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div><div class="line">mkdir git_rep</div><div class="line"><span class="built_in">cd</span> git_rep</div><div class="line">git --bare init hello.git     // 在远程建立一个裸仓库，作为 Git Server</div><div class="line"><span class="built_in">cd</span> hello.git</div><div class="line">sudo chmod 777 -R hello.git   // 修改权限，否则 push 的时候 objects 和 refs 目录会提示权限不足</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div><div class="line">mkdir git_rep</div><div class="line"><span class="built_in">cd</span> git_rep</div><div class="line">git --bare init hello.git     // 在远程建立一个裸仓库，作为 Git Server</div><div class="line">sudo chmod 777 -R hello.git   // 修改权限，否则 push 的时候 objects 和 refs 目录会提示权限不足</div></pre></td></tr></table></figure>
 <h3 id="建立工作目录"><a href="#建立工作目录" class="headerlink" title="建立工作目录"></a>建立工作目录</h3><p>在服务器上克隆我们的远程仓库，作为要部署的工作目录。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div><div class="line">git <span class="built_in">clone</span> ~/git_rep/hello.git</div><div class="line">sudo chmod 777 -R hello        // hello 是我们的工作目录。此处修改权限是必要的，否则钩子将无法同步代码。</div></pre></td></tr></table></figure>
 <h3 id="为远程仓库提供-hooks"><a href="#为远程仓库提供-hooks" class="headerlink" title="为远程仓库提供 hooks"></a>为远程仓库提供 hooks</h3><p>这是最关键的一步了。开始的时候提到过，每次<code>push</code>到<code>Git Server</code>的代码，经过<code>Git Hooks</code>（钩子），将代码同步到我们的工作目录下。Git 的钩子定义在<code>.git/hooks</code>目录下，我们添加一个<code>post-receive</code>文件，填写钩子要进行的操作。说白了，这就是个 bash 脚本，因此我们可以在里面执行任何我们需要执行的操作，比如说同步代码后重启我的 Node.js 服务器。</p>
@@ -495,7 +495,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
