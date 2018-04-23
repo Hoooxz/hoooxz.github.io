@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="使用 React 开发前端项目，最后必然要部署到服务器上。本文就从一个初学者的角度，介绍一下我个人基于create-react-app脚手架尝试进行这项工作的经历。 部署一个 React 项目到服务器的总体思路为，通过build命令配合NODE_ENV将 React 工程编译为用于服务端的.html、.css、.js文件，然后交由静态服务器托管，用户请求并渲染页面后，通过 API 与后端交互。 配">
+<meta name="description" content="使用 React 开发前端项目，最后必然要部署到服务器上。本文就从一个初学者的角度，介绍一下我个人基于create-react-app脚手架尝试进行这项工作的经历。 部署一个 React 项目到服务器的总体思路为，通过build命令配合NODE_ENV将 React 工程编译为用于服务端的.html、.css、.js文件，然后交由静态服务器托管，用户请求并渲染页面后，通过 API 与后端交互。">
 <meta name="keywords" content="Node.js,React.js,Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何部署一个 React 项目">
 <meta property="og:url" content="https://www.hoxz.me/2018/04/23/react-project-deploy/index.html">
 <meta property="og:site_name" content="Hoxz的博客">
-<meta property="og:description" content="使用 React 开发前端项目，最后必然要部署到服务器上。本文就从一个初学者的角度，介绍一下我个人基于create-react-app脚手架尝试进行这项工作的经历。 部署一个 React 项目到服务器的总体思路为，通过build命令配合NODE_ENV将 React 工程编译为用于服务端的.html、.css、.js文件，然后交由静态服务器托管，用户请求并渲染页面后，通过 API 与后端交互。 配">
+<meta property="og:description" content="使用 React 开发前端项目，最后必然要部署到服务器上。本文就从一个初学者的角度，介绍一下我个人基于create-react-app脚手架尝试进行这项工作的经历。 部署一个 React 项目到服务器的总体思路为，通过build命令配合NODE_ENV将 React 工程编译为用于服务端的.html、.css、.js文件，然后交由静态服务器托管，用户请求并渲染页面后，通过 API 与后端交互。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-23T11:58:05.453Z">
+<meta property="og:updated_time" content="2018-04-23T11:59:27.924Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何部署一个 React 项目">
-<meta name="twitter:description" content="使用 React 开发前端项目，最后必然要部署到服务器上。本文就从一个初学者的角度，介绍一下我个人基于create-react-app脚手架尝试进行这项工作的经历。 部署一个 React 项目到服务器的总体思路为，通过build命令配合NODE_ENV将 React 工程编译为用于服务端的.html、.css、.js文件，然后交由静态服务器托管，用户请求并渲染页面后，通过 API 与后端交互。 配">
+<meta name="twitter:description" content="使用 React 开发前端项目，最后必然要部署到服务器上。本文就从一个初学者的角度，介绍一下我个人基于create-react-app脚手架尝试进行这项工作的经历。 部署一个 React 项目到服务器的总体思路为，通过build命令配合NODE_ENV将 React 工程编译为用于服务端的.html、.css、.js文件，然后交由静态服务器托管，用户请求并渲染页面后，通过 API 与后端交互。">
 
 
 
@@ -322,6 +322,7 @@
       
         <p>使用 React 开发前端项目，最后必然要部署到服务器上。本文就从一个初学者的角度，介绍一下我个人基于<code>create-react-app</code>脚手架尝试进行这项工作的经历。</p>
 <p>部署一个 React 项目到服务器的总体思路为，通过<code>build</code>命令配合<code>NODE_ENV</code>将 React 工程编译为用于服务端的<code>.html</code>、<code>.css</code>、<code>.js</code>文件，然后交由静态服务器托管，用户请求并渲染页面后，通过 API 与后端交互。</p>
+<a id="more"></a> 
 <h3 id="配置编译-React-工程"><a href="#配置编译-React-工程" class="headerlink" title="配置编译 React 工程"></a>配置编译 React 工程</h3><h5 id="1-路由"><a href="#1-路由" class="headerlink" title="1. 路由"></a>1. 路由</h5><p>静态服务器托管的方式不能使用<code>BrowserRouter</code>，否则会导致页面加载或刷新为空的情况。具体原因有待进一步研究。所以，只能将<code>React Router</code>配置为<code>HashRouter</code>，具体配置方法我在<a href="http://hoxz.me/2018/04/22/react-router-4-tips/" target="_blank" rel="external">这里</a>有提到。</p>
 <h5 id="2-NODE-ENV"><a href="#2-NODE-ENV" class="headerlink" title="2. NODE_ENV"></a>2. NODE_ENV</h5><p>我们往往在开发环境和生产环境会使用不同的 API，即便他们完全相同。这样的好处是既能保证数据安全，又能使前后端不会过于耦合，方便迭代。</p>
 <p>使用<code>create-react-app</code>脚手架编译的命令是<code>yarn build</code>，相应的配置中为我们提供了对应的<code>NODE_ENV</code>。我们可以在代码中判断这一变量，提供不同的 API 或参数。</p>

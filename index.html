@@ -309,34 +309,15 @@
 
       
         
-          
-            <p>使用 React 开发前端项目，最后必然要部署到服务器上。本文就从一个初学者的角度，介绍一下我个人基于<code>create-react-app</code>脚手架尝试进行这项工作的经历。</p>
+          <p>使用 React 开发前端项目，最后必然要部署到服务器上。本文就从一个初学者的角度，介绍一下我个人基于<code>create-react-app</code>脚手架尝试进行这项工作的经历。</p>
 <p>部署一个 React 项目到服务器的总体思路为，通过<code>build</code>命令配合<code>NODE_ENV</code>将 React 工程编译为用于服务端的<code>.html</code>、<code>.css</code>、<code>.js</code>文件，然后交由静态服务器托管，用户请求并渲染页面后，通过 API 与后端交互。</p>
-<h3 id="配置编译-React-工程"><a href="#配置编译-React-工程" class="headerlink" title="配置编译 React 工程"></a>配置编译 React 工程</h3><h5 id="1-路由"><a href="#1-路由" class="headerlink" title="1. 路由"></a>1. 路由</h5><p>静态服务器托管的方式不能使用<code>BrowserRouter</code>，否则会导致页面加载或刷新为空的情况。具体原因有待进一步研究。所以，只能将<code>React Router</code>配置为<code>HashRouter</code>，具体配置方法我在<a href="http://hoxz.me/2018/04/22/react-router-4-tips/" target="_blank" rel="external">这里</a>有提到。</p>
-<h5 id="2-NODE-ENV"><a href="#2-NODE-ENV" class="headerlink" title="2. NODE_ENV"></a>2. NODE_ENV</h5><p>我们往往在开发环境和生产环境会使用不同的 API，即便他们完全相同。这样的好处是既能保证数据安全，又能使前后端不会过于耦合，方便迭代。</p>
-<p>使用<code>create-react-app</code>脚手架编译的命令是<code>yarn build</code>，相应的配置中为我们提供了对应的<code>NODE_ENV</code>。我们可以在代码中判断这一变量，提供不同的 API 或参数。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> configs = &#123;&#125;</div><div class="line"><span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">'production'</span>) &#123;</div><div class="line">  <span class="comment">/* 生产环境 */</span></div><div class="line">  configs = &#123; &#125;;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  <span class="comment">/* 开发环境 */</span></div><div class="line">  configs = &#123; &#125;;</div><div class="line">&#125;</div><div class="line"><span class="built_in">module</span>.exports = &#123; configs &#125;;</div></pre></td></tr></table></figure>
-<h5 id="3-Homepage"><a href="#3-Homepage" class="headerlink" title="3. Homepage"></a>3. Homepage</h5><p>编译好的版本默认是运行在服务器根域名上的，例如你的服务器域名为<code>www.xxx.yyy</code>，那么在你的网页里请求<code>/static/css/app.css</code>时，请求url为<code>www.xxx.yyy/static/css/app.css</code>。但如果你实际上通过 Nginx 把域名下的某个路径转发给托管着 React 项目的静态服务器，那么请求url为<code>www.xxx.yyy/static/css/app.css</code>就显然不可用了。当然如果要直接运行在根域名下，那这一步就可以不用关心了。</p>
-<p>假设Nginx配置如下：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># nginx.conf</span></div><div class="line"><span class="attribute">location</span> /react/ </div><div class="line">&#123;</div><div class="line">    <span class="attribute">root</span> /html/react/;</div><div class="line">    <span class="attribute">index</span> index.html;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>此时，访问<code>www.xxx.yyy/react/</code>便是访问我们的 React 项目，但这只是<code>index.html</code>。<code>index.html</code>肯定请求了相关的<code>.css</code>和<code>.js</code>文件，不妨我们假设在<code>index.html</code>的同级目录下有<code>static/css/app.css</code>。如果还按照原来的配置，<code>index.html</code>中的<code>link</code>标签会指引浏览器去请求<code>www.xxx.yyy/static/css/app.css</code>，这显然不会得到正确的响应。我们的做法是，在<code>package.json</code>中配置<code>homepage</code>字段，作为 React 项目运行的根路径，编译过程中会自动给<code>index.html</code>以外的资源路径加上这个根路径前缀。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// package.json</div><div class="line">"homepage": "http://www.xxx.yyy/react"</div></pre></td></tr></table></figure>
-<p>这样，浏览器就会正确地请求<code>www.xxx.yyy/react/static/css/app.css</code>了。这一点在<code>create-react-app</code>的说明文档里有更详细的解释。</p>
-<h3 id="使用-pm2-的静态托管"><a href="#使用-pm2-的静态托管" class="headerlink" title="使用 pm2 的静态托管"></a>使用 pm2 的静态托管</h3><p>经常利用 Node.js 做后端的人肯定对<code>pm2</code>不能更熟悉了，利用它可以方便地管理我们的 Node 项目，而不是使用<code>node app.js</code> + <code>screen</code>这种复杂操作。令人想不到的是，其实 <code>pm2</code> 也提供了静态服务器的使用方法，功能上类似于<code>serve</code>这个 NPM 包。</p>
-<p>利用<code>pm2 serve</code>命令，指定路径、端口、自定义项目名、[可选]监控文件修改，即可运行起我们的 React 项目。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pm2 serve path port --name ProjectName --watch</div></pre></td></tr></table></figure>
-<h3 id="配置-Nginx-实现端口转发"><a href="#配置-Nginx-实现端口转发" class="headerlink" title="配置 Nginx 实现端口转发"></a>配置 Nginx 实现端口转发</h3><p>前面在介绍<code>homepage</code>字段的时候提到了一点 Nginx 端口转发，用到它的主要考虑就是在同一服务器上跑着多个项目，但又不想配置多个二级域名，毕竟涉及到域名解析、SSL 证书等操作起来不是很方便。按照前例，我们将 React 项目映射到<code>/react</code>路径下。</p>
-<p>Nginx 配置文件路径一般是<code>/etc/nginx/nginx.conf</code>，这里只给出我们修改的部分。</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">server</div><div class="line">&#123;</div><div class="line">    ...</div><div class="line">    <span class="attribute">location</span> /react/</div><div class="line">    &#123;</div><div class="line">      proxy_pass http://localhost:6666/;  // 假设我在pm2 serve命令指定运行在6666端口    </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>肯定有人会有疑问，Nginx 本身就可以托管静态网页（<code>homepage</code>小节演示的 Nginx 配置方式），为何要大费周折，先利用<code>pm2</code>托管、再利用 Nginx 转发呢。其实这又涉及到了<code>React Router</code>的问题。<code>HashRouter</code>有一个弊端就是路径中带有<code>#</code>，但我暂时还没有找到使用<code>BrowserRouter</code>的方法，所以只好这样转发啦~</p>
-<hr>
-<p>参考链接：</p>
-<ol>
-<li><a href="https://blog.csdn.net/uikoo9/article/details/79018750" target="_blank" rel="external">你所不知道的pm2</a></li>
-<li><a href="http://pm2.keymetrics.io/docs/usage/expose/" target="_blank" rel="external">PM2 - Serve</a></li>
-</ol>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/23/react-project-deploy/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
