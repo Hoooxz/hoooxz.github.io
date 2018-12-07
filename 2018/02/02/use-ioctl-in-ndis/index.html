@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="驱动程序,Windows,NDIS," />
+  <meta name="keywords" content="Windows,NDIS,驱动程序," />
 
 
 
@@ -80,7 +80,7 @@
 
 
 <meta name="description" content="关键思路：为驱动创建一个设备对象 usbnwifi 例程中，MPInitialize函数通过NICRegisterDevice函数，注册了NICDispatch函数入口（该函数实现IRP的分发处理），从而为小端口驱动注册了一个IOCTL接口。这一过程根本上是调用了NDIS的NdisRegisterDeviceEx函数，传入了包含分发函数入口的_NDIS_DEVICE_OBJECT_ATTRIBU">
-<meta name="keywords" content="驱动程序,Windows,NDIS">
+<meta name="keywords" content="Windows,NDIS,驱动程序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NDIS小端口驱动实现IOCTL分发">
 <meta property="og:url" content="http://hooxz.com/2018/02/02/use-ioctl-in-ndis/index.html">
@@ -387,11 +387,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/驱动程序/" rel="tag"># 驱动程序</a>
-          
             <a href="/tags/Windows/" rel="tag"># Windows</a>
           
             <a href="/tags/NDIS/" rel="tag"># NDIS</a>
+          
+            <a href="/tags/驱动程序/" rel="tag"># 驱动程序</a>
           
         </div>
       
@@ -775,9 +775,9 @@
             oauth: {
             
             
-                client_secret: 'a94240d0759f873033ea0af64865847c458026bf',
+                client_secret: 'bb79d23f488a231585d4d9b7d1f00ca0c0c5fd02',
             
-                client_id: '128d82b267219b038ee7'
+                client_id: 'cd0e404d6d1f610f7384'
             }});
         gitment.render('gitment-container');
       }
