@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Hoxz的博客">
 <meta property="og:description" content="上篇提到，this.callback() 返回一个回调函数，其实是以闭包的形式返回了一个局部函数变量 handleRequest，供 Server 调用来处理 HTTP 请求。 12345678910callback() &amp;#123;  const fn = compose(this.middleware);  const handleRequest = (req, res) =&amp;gt; &amp;#12">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-07T05:47:02.110Z">
+<meta property="og:updated_time" content="2018-12-07T05:48:32.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Koa源码阅读（二）上下文ctx">
 <meta name="twitter:description" content="上篇提到，this.callback() 返回一个回调函数，其实是以闭包的形式返回了一个局部函数变量 handleRequest，供 Server 调用来处理 HTTP 请求。 12345678910callback() &amp;#123;  const fn = compose(this.middleware);  const handleRequest = (req, res) =&amp;gt; &amp;#12">
@@ -328,6 +328,7 @@
 <li>将上下文 <code>ctx</code> 和函数 <code>fn</code> 交由 <code>this.handleRequest()</code> 处理</li>
 </ul>
 <p>接下来我们看一下上下文 ctx 是怎么创建和使用的。</p>
+<a id="more"></a> 
 <h2 id="创建上下文-ctx"><a href="#创建上下文-ctx" class="headerlink" title="创建上下文 ctx"></a>创建上下文 ctx</h2><p>直接将 Node 提供的原生 <code>request</code> 和 <code>response</code> 传给了 <code>this.createContext()</code> 方法。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">createContext(req, res) &#123;</div><div class="line">  <span class="keyword">const</span> context = <span class="built_in">Object</span>.create(<span class="keyword">this</span>.context);</div><div class="line">  <span class="keyword">const</span> request = context.request = <span class="built_in">Object</span>.create(<span class="keyword">this</span>.request);</div><div class="line">  <span class="keyword">const</span> response = context.response = <span class="built_in">Object</span>.create(<span class="keyword">this</span>.response);</div><div class="line">  context.app = request.app = response.app = <span class="keyword">this</span>;</div><div class="line">  context.req = request.req = response.req = req;</div><div class="line">  context.res = request.res = response.res = res;</div><div class="line">  request.ctx = response.ctx = context;</div><div class="line">  request.response = response;</div><div class="line">  response.request = request;</div><div class="line">  context.originalUrl = request.originalUrl = req.url;</div><div class="line">  context.state = &#123;&#125;;</div><div class="line">  <span class="keyword">return</span> context;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>代码似乎重复性很大，我们梳理一下：</p>
