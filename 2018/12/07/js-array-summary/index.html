@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Mongodb," />
+  <meta name="keywords" content="JavaScript," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="mongolass采用了和mongoose类似的API，对主键进行操作时不能简单的使用_id字符串而使用对其进行格式化，如下： 1&amp;#123; _id: Mongolass.Types.ObjectId(id) &amp;#125;">
-<meta name="keywords" content="Mongodb">
+<meta name="description" content="新建数组123var arr1 = [&apos;red&apos;, &apos;blue&apos;];var arr2 = new Array(2);var arr3 = new Array(&apos;red&apos;, &apos;blue&apos;);">
+<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mongolass通过默认生成的_id进行操作">
-<meta property="og:url" content="http://hoooxz.github.io/2017/10/20/mongolass-id/index.html">
+<meta property="og:title" content="JavaScript的Array类型方法总结">
+<meta property="og:url" content="http://hoooxz.github.io/2018/12/07/js-array-summary/index.html">
 <meta property="og:site_name" content="Hoxz的博客">
-<meta property="og:description" content="mongolass采用了和mongoose类似的API，对主键进行操作时不能简单的使用_id字符串而使用对其进行格式化，如下： 1&amp;#123; _id: Mongolass.Types.ObjectId(id) &amp;#125;">
+<meta property="og:description" content="新建数组123var arr1 = [&apos;red&apos;, &apos;blue&apos;];var arr2 = new Array(2);var arr3 = new Array(&apos;red&apos;, &apos;blue&apos;);">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-20T15:29:59.480Z">
+<meta property="og:updated_time" content="2018-12-07T01:25:05.723Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mongolass通过默认生成的_id进行操作">
-<meta name="twitter:description" content="mongolass采用了和mongoose类似的API，对主键进行操作时不能简单的使用_id字符串而使用对其进行格式化，如下： 1&amp;#123; _id: Mongolass.Types.ObjectId(id) &amp;#125;">
+<meta name="twitter:title" content="JavaScript的Array类型方法总结">
+<meta name="twitter:description" content="新建数组123var arr1 = [&apos;red&apos;, &apos;blue&apos;];var arr2 = new Array(2);var arr3 = new Array(&apos;red&apos;, &apos;blue&apos;);">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://hoooxz.github.io/2017/10/20/mongolass-id/"/>
+  <link rel="canonical" href="http://hoooxz.github.io/2018/12/07/js-array-summary/"/>
 
 
 
 
 
-  <title>mongolass通过默认生成的_id进行操作 | Hoxz的博客</title>
+  <title>JavaScript的Array类型方法总结 | Hoxz的博客</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hoooxz.github.io/2017/10/20/mongolass-id/">
+    <link itemprop="mainEntityOfPage" href="http://hoooxz.github.io/2018/12/07/js-array-summary/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hoxz">
@@ -260,7 +260,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">mongolass通过默认生成的_id进行操作</h2>
+          <h2 class="post-title" itemprop="name headline">JavaScript的Array类型方法总结</h2>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T23:12:06+08:00">
-                2017-10-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-07T09:23:08+08:00">
+                2018-12-07
               </time>
             
 
@@ -291,8 +291,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/20/mongolass-id/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/10/20/mongolass-id/" itemprop="commentsCount"></span>
+                <a href="/2018/12/07/js-array-summary/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/12/07/js-array-summary/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,8 +320,112 @@
       
 
       
-        <p>mongolass采用了和mongoose类似的API，对主键进行操作时不能简单的使用_id字符串<br>而使用对其进行格式化，如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123; _id: Mongolass.Types.ObjectId(id) &#125;</div></pre></td></tr></table></figure>
+        <h2 id="新建数组"><a href="#新建数组" class="headerlink" title="新建数组"></a>新建数组</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr1 = [<span class="string">'red'</span>, <span class="string">'blue'</span>];</div><div class="line"><span class="keyword">var</span> arr2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">2</span>);</div><div class="line"><span class="keyword">var</span> arr3 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">'red'</span>, <span class="string">'blue'</span>);</div></pre></td></tr></table></figure>
+<a id="more"></a> 
+<h2 id="检测数组"><a href="#检测数组" class="headerlink" title="检测数组"></a>检测数组</h2><p>1.instanceof</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (value <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>若在不同的全局执行环境下，可能会出现问题。如，页面中存在两个框架，每个框架有不同版本的 Array 构造函数。</p>
+<blockquote>
+<p>instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上</p>
+</blockquote>
+<p>2.Array.isArray()</p>
+<p>这是 ES5 新增的检测方法。</p>
+<h2 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h2><p>1.valueOf() - 返回数组本身</p>
+<p>2.toString() - 每项调用自己的 toString() 转为字符串，以逗号分隔拼接</p>
+<p>3.toLocaleString() - 与 toString() 类似，但每项调用的是 toLocaleString()</p>
+<p>4.join() - 与 toString() 类似，但可传入自定义分隔符</p>
+<h2 id="栈方法"><a href="#栈方法" class="headerlink" title="栈方法"></a>栈方法</h2><p>1.push() - 从尾插入 （数组最后）</p>
+<p>2.pop() - 从尾取出 （数组最后）</p>
+<h2 id="队列方法"><a href="#队列方法" class="headerlink" title="队列方法"></a>队列方法</h2><p>1.shift() - 从头取出 （数组开头）</p>
+<p>2.push() - 从尾插入</p>
+<p>3.unshift() - 从头插入 （数组开头）</p>
+<p>4.pop() - 从尾取出</p>
+<h2 id="重排序方法"><a href="#重排序方法" class="headerlink" title="重排序方法"></a>重排序方法</h2><p>1.reserve() - 反转</p>
+<p>2.sort()</p>
+<ul>
+<li>若不传参数，则调用每项的 toString() 方法，实际比较的是字符串。</li>
+<li>若传入回调，则应使得：<ul>
+<li>第一个参数在第二个参数之前，返回负数</li>
+<li>两参数相等，返回0</li>
+<li>第一个参数在第二个参数之后，返回正数</li>
+</ul>
+</li>
+</ul>
+<h2 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a>操作方法</h2><p>1.concat() - 拷贝并追加参数中的元素或数组</p>
+<p>2.slice(start, end) - 基于当前数组中的一项多项创建一个新的数组，不包括 end</p>
+<ul>
+<li>若某个参数为负数，则加上数组长度再执行</li>
+<li>若 end 小于 start，返回空数组</li>
+</ul>
+<p>3.splice() - 在原始数组上插入项</p>
+<ul>
+<li>删除 splice(index, length)</li>
+<li>插入 splice(index, 0, item1, item2, item3)</li>
+<li>替换 splice(index, 1, item1, item2)</li>
+</ul>
+<h2 id="位置方法"><a href="#位置方法" class="headerlink" title="位置方法"></a>位置方法</h2><p>1.indexOf()</p>
+<p>2.lastIndexOf()</p>
+<p>注意：查找时使用的是全等比较（===）</p>
+<blockquote>
+<p>兼容性：IE9+、Firefox 2+、Safari 3+、Opera 9.5+、Chrome</p>
+</blockquote>
+<h2 id="迭代方法"><a href="#迭代方法" class="headerlink" title="迭代方法"></a>迭代方法</h2><p>每个迭代方法可传入两个参数：</p>
+<ul>
+<li>在每项上运行的函数</li>
+<li>[可选] 运行该函数的作用于对象——影响 this 的值</li>
+</ul>
+<p>1.every() &amp; some() - 每一项/某一项返回 true，则返回 true</p>
+<p>2.filter() - 返回返回 true 的项目组成的数组</p>
+<p>3.forEach() - 仅遍历，无返回值</p>
+<p>4.map() - 返回每项的返回值组成的数组</p>
+<blockquote>
+<p>兼容性：IE9+、Firefox 2+、Safari 3+、Opera 9.5+、Chrome</p>
+</blockquote>
+<h2 id="归并方法"><a href="#归并方法" class="headerlink" title="归并方法"></a>归并方法</h2><p>1.reduce()</p>
+<p>接收两个参数：</p>
+<ul>
+<li>在每项上调用的函数，四个参数：<ul>
+<li>前一个值 prev，上一项调用函数的返回值</li>
+<li>当前值 cur</li>
+<li>项的索引 index</li>
+<li>数组对象 array</li>
+</ul>
+</li>
+<li>[可选] 作为归并基础的初始值</li>
+</ul>
+<p>2.reduceRight()</p>
+<p>从最后一项遍历到第一项</p>
+<blockquote>
+<p>兼容性：IE9+、Firefox 3+、Safari 4+、Opera 10.5+、Chrome</p>
+</blockquote>
+<h2 id="常用操作总结"><a href="#常用操作总结" class="headerlink" title="常用操作总结"></a>常用操作总结</h2><h4 id="1-数组拷贝"><a href="#1-数组拷贝" class="headerlink" title="1. 数组拷贝"></a>1. 数组拷贝</h4><ul>
+<li>arr.slice(0)</li>
+<li>arr.concat()</li>
+<li>arr.join().split(‘,’)</li>
+</ul>
+<h4 id="2-元素插入头部"><a href="#2-元素插入头部" class="headerlink" title="2. 元素插入头部"></a>2. 元素插入头部</h4><ul>
+<li>[item].concat(arr)</li>
+<li>arr.unshift(item)</li>
+<li>[].push.apply([item], arr) （利用了 apply 的第二个参数必须是参数数组的特性）</li>
+<li>arr.splice(0, 0, item)</li>
+</ul>
+<h4 id="3-移除头部元素"><a href="#3-移除头部元素" class="headerlink" title="3. 移除头部元素"></a>3. 移除头部元素</h4><ul>
+<li>arr.slice(1)</li>
+<li>arr.shift()</li>
+<li>arr.splice(0, 1)</li>
+</ul>
+<h4 id="4-元素插入尾部"><a href="#4-元素插入尾部" class="headerlink" title="4. 元素插入尾部"></a>4. 元素插入尾部</h4><ul>
+<li>arr.concat([item])</li>
+<li>arr.push(item)</li>
+<li>[].push.apply(arr, [item])</li>
+<li>arr.splice(arr.length, 0, item)</li>
+</ul>
+<h4 id="5-移除尾部元素"><a href="#5-移除尾部元素" class="headerlink" title="5. 移除尾部元素"></a>5. 移除尾部元素</h4><ul>
+<li>arr.slice(0, -1)</li>
+<li>arr.pop()</li>
+<li>arr.splice(arr.length - 1, 1)</li>
+</ul>
+
       
     </div>
     
@@ -338,7 +442,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Mongodb/" rel="tag"># Mongodb</a>
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
         </div>
       
@@ -351,8 +455,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/20/httpie-nodejs-post/" rel="next" title="利用httpie工具对nodejs express进行post测试">
-                <i class="fa fa-chevron-left"></i> 利用httpie工具对nodejs express进行post测试
+              <a href="/2018/12/06/koa-source-code-1/" rel="next" title="Koa源码阅读（一）从搭建Web服务器说起">
+                <i class="fa fa-chevron-left"></i> Koa源码阅读（一）从搭建Web服务器说起
               </a>
             
           </div>
@@ -360,10 +464,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/20/java-mysql-environment/" rel="prev" title="搭建Java&MySQL开发环境">
-                搭建Java&MySQL开发环境 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -422,8 +522,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -494,6 +603,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#新建数组"><span class="nav-number">1.</span> <span class="nav-text">新建数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检测数组"><span class="nav-number">2.</span> <span class="nav-text">检测数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转换方法"><span class="nav-number">3.</span> <span class="nav-text">转换方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈方法"><span class="nav-number">4.</span> <span class="nav-text">栈方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列方法"><span class="nav-number">5.</span> <span class="nav-text">队列方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重排序方法"><span class="nav-number">6.</span> <span class="nav-text">重排序方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作方法"><span class="nav-number">7.</span> <span class="nav-text">操作方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#位置方法"><span class="nav-number">8.</span> <span class="nav-text">位置方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代方法"><span class="nav-number">9.</span> <span class="nav-text">迭代方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#归并方法"><span class="nav-number">10.</span> <span class="nav-text">归并方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用操作总结"><span class="nav-number">11.</span> <span class="nav-text">常用操作总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-数组拷贝"><span class="nav-number">11.0.1.</span> <span class="nav-text">1. 数组拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-元素插入头部"><span class="nav-number">11.0.2.</span> <span class="nav-text">2. 元素插入头部</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-移除头部元素"><span class="nav-number">11.0.3.</span> <span class="nav-text">3. 移除头部元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-元素插入尾部"><span class="nav-number">11.0.4.</span> <span class="nav-text">4. 元素插入尾部</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-移除尾部元素"><span class="nav-number">11.0.5.</span> <span class="nav-text">5. 移除尾部元素</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
